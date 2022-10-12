@@ -1,0 +1,34 @@
+<div class="container text-center">
+  <mat-card class="example-card">
+    <img src="../../../assets/logo.png" alt="FISIO_LOGO" class="ronded mx-auto d-block">
+    <br>
+    <mat-card-title>Crear Cuenta</mat-card-title>
+    <hr>
+    <form class="row">
+      <mat-form-field class="example-full-width col" appearance="fill">
+        <mat-label>Nombre</mat-label>
+         <input matInput placeholder="Ingresa tu nombre" required>
+       </mat-form-field>
+       <mat-form-field class="example-full-width col" appearance="fill">
+         <mat-label>Apellidos</mat-label>
+         <input matInput placeholder="Ingresa tus apellidos" required>
+       </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+         <mat-label>Correo</mat-label>
+         <input type="email" matInput placeholder="Ingresa tu correo" required>
+      </mat-form-field>    
+      <mat-form-field class="example-full-width col" appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input type="password" matInput placeholder="Ingresa tu contraseña" required>
+      </mat-form-field>  
+      <mat-form-field class="example-full-width col" appearance="fill">
+        <mat-label>Repite tu contraseña</mat-label>
+        <input type="password" matInput placeholder="Vuelve a ingresar tu contraseña" required>
+      </mat-form-field>         
+      <button mat-raised-button color="primary">Crear cuenta</button>
+    </form>
+    <hr>
+    
+    <a mat-button routerLink="">¿Ya tienes cuenta?/Inicia Sesión</a>
+  </mat-card>
+</div>
