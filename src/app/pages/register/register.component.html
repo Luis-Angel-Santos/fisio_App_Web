@@ -4,31 +4,71 @@
     <br>
     <mat-card-title>Crear Cuenta</mat-card-title>
     <hr>
-    <form class="row">
+    <p>Campos Obligatorios *</p>
+    <form (ngSubmit)="enviar()" class="row" [formGroup]="user" novalidate>
       <mat-form-field class="example-full-width col" appearance="fill">
         <mat-label>Nombre</mat-label>
-         <input matInput placeholder="Ingresa tu nombre" required>
+         <input 
+            matInput 
+            placeholder="Ingresa tu nombre" 
+            formControlName="nombre">
        </mat-form-field>
        <mat-form-field class="example-full-width col" appearance="fill">
          <mat-label>Apellidos</mat-label>
-         <input matInput placeholder="Ingresa tus apellidos" required>
+         <input 
+            matInput 
+            placeholder="Ingresa tus apellidos"
+            formControlName="apellidos">
        </mat-form-field>
       <mat-form-field class="example-full-width" appearance="fill">
          <mat-label>Correo</mat-label>
-         <input type="email" matInput placeholder="Ingresa tu correo" required>
+         <input 
+            type="email" 
+            matInput 
+            placeholder="Ingresa tu correo" 
+            formControlName="correo">
       </mat-form-field>    
       <mat-form-field class="example-full-width col" appearance="fill">
         <mat-label>Contraseña</mat-label>
-        <input type="password" matInput placeholder="Ingresa tu contraseña" required>
-      </mat-form-field>  
+        <input 
+            [type]="hide ? 'password' : 'text'" 
+            matInput 
+            placeholder="Ingresa tu contraseña" 
+            formControlName="contrasena">
+      </mat-form-field>
       <mat-form-field class="example-full-width col" appearance="fill">
         <mat-label>Repite tu contraseña</mat-label>
-        <input type="password" matInput placeholder="Vuelve a ingresar tu contraseña" required>
+        <input 
+            [type]="hide ? 'password' : 'text'" 
+            matInput 
+            placeholder="Vuelve a ingresar tu contraseña"
+            formControlName="recontrasena">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
       </mat-form-field>         
-      <button mat-raised-button color="primary">Crear cuenta</button>
+      <p *ngIf="user.get('nombre')?.errors && user.get('nombre')?.touched"
+         class="alert alert-danger">
+          Este campo es obligatorio
+      </p>
+      <p *ngIf="user.get('apellidos')?.errors && user.get('apellidos')?.touched"
+         class="alert alert-danger">
+          Este campo es obligatorio
+      </p>
+      <p *ngIf="user.get('correo')?.errors 
+                && user.get('correo')?.hasError('email')
+                && user.get('correo')?.touched"
+         class="alert alert-danger">
+          Por favor introduce un correo valido
+      </p>
+      <p *ngIf="user.get('contrasena')?.errors && user.get('contrasena')?.touched"
+         class="alert alert-danger">
+          La contraseña debe tener como minimo 8 caracteres
+      </p>
+      <button type="submit" mat-raised-button color="primary" [disabled]="user.invalid">Crear cuenta</button>
     </form>
     <hr>
     
-    <a mat-button routerLink="">¿Ya tienes cuenta?/Inicia Sesión</a>
+    <a mat-button routerLink="/login">¿Ya tienes cuenta?/Inicia Sesión</a>
   </mat-card>
 </div>

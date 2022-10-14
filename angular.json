@@ -96,6 +96,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "Fisio:build:production",
+            "firebaseProject": "fisioapp-73d11",
+            "firebaseHostingSite": "fisioapp-73d11"
+          }
         }
       }
     }

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fisioapp-73d11": {
+      "hosting": {
+        "Fisio": [
+          "fisioapp-73d11"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fisioapp-73d11"
+  }
+}

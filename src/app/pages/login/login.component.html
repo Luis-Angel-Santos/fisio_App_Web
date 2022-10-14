@@ -4,19 +4,40 @@
       <br>
       <mat-card-title>Inicia Sesión</mat-card-title>
       <hr>
-      <form class="row">
+      <form (ngSubmit)="enviar()" class="row" [formGroup]="user">
         <mat-form-field class="example-full-width" appearance="fill">
            <mat-label>Correo</mat-label>
-           <input type="email" matInput placeholder="Ingresa tu correo" required>
+           <input 
+              type="email" 
+              matInput 
+              placeholder="Ingresa tu correo" 
+              formControlName="correo">
         </mat-form-field>    
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Contraseña</mat-label>
-          <input type="password" matInput placeholder="Ingresa tu contraseña" required>
-        </mat-form-field>  
-        <button mat-raised-button color="primary">Inciar Sesión</button>
+          <input 
+              [type]="hide ? 'password' : 'text'" 
+              matInput 
+              placeholder="Ingresa tu contraseña" 
+              formControlName="contrasena">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <p *ngIf="user.get('correo')?.errors 
+                && user.get('correo')?.hasError('email')
+                && user.get('correo')?.touched"
+            class="alert alert-danger">
+          Por favor introduce un correo valido
+      </p>
+        <p *ngIf="user.get('contrasena')?.errors && user.get('contrasena')?.touched"
+          class="alert alert-danger">
+            Este campo es obligatorio
+        </p>
+        <button type="submit" mat-raised-button color="primary">Iniciar Sesión</button>  
       </form>
       <hr>
       
-      <a mat-button routerLink="crearCuenta">¿No tienes cuenta?/Crear cuenta</a>
+      <a mat-button routerLink="/crearCuenta">¿No tienes cuenta?/Crear cuenta</a>
     </mat-card>
   </div>
