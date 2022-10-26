@@ -9,11 +9,6 @@ import { Paciente } from '../../interfaces/paciente';
 })
 export class HomeComponent implements OnInit {
 
-  nombre!: string;
-  apellidos!: string;
-  telefono!: number;
-  correo!: string;
-  foto!: string;
   pacientes!: any;
 
   constructor(private pacientesService: PacienteService) { }

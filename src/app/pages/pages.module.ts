@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
 import { RegistrarPacienteComponent } from './pacientes/registrar-paciente/registrar-paciente.component';
+import { ConsultaPacienteComponent } from './pacientes/consulta-paciente/consulta-paciente.component';
 
 
 
@@ -19,7 +20,8 @@ import { RegistrarPacienteComponent } from './pacientes/registrar-paciente/regis
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    RegistrarPacienteComponent
+    RegistrarPacienteComponent,
+    ConsultaPacienteComponent
   ],
   imports: [
     CommonModule,

@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistrarPacienteComponent } from './pages/pacientes/registrar-paciente/registrar-paciente.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { ConsultaPacienteComponent } from './pages/pacientes/consulta-paciente/consulta-paciente.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,11 @@ const routes: Routes = [
   {
     path: 'registrarPaciente',
     component: RegistrarPacienteComponent
-  }
+  },
+  {
+    path: 'consultarPaciente/:nombre',
+    component: ConsultaPacienteComponent
+  },
 ];
 
 @NgModule({
