@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Medico } from '../interfaces/medico';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { FirebaseError, initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCredential } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
@@ -13,6 +15,7 @@ export class AuthService {
 
   app = initializeApp(environment.firebase);
   auth = getAuth(this.app);
+  firestore = getFirestore(this.app);
   email: string = '';
   password: string = '';
 
@@ -21,6 +24,9 @@ export class AuthService {
     this.password = medico.contrasena;
     createUserWithEmailAndPassword(this.auth, this.email, this.password)
       .then((userCredential) => {
+        
+        this.crearDatosMedico(userCredential, medico);
+
         Swal.fire({
           icon: 'success',
           title: 'Cuenta Creada',
@@ -50,13 +56,12 @@ export class AuthService {
           icon: 'success',
           title: 'Entrando...',
           showConfirmButton: false,
-          timer: 1500
+          timer: 2000
         }).then((result) => {
-          this.router.navigateByUrl('prueba');
+          this.router.navigateByUrl('home');
         })
       })
       .catch((error) =>{
-        //console.log(error.message);
         Swal.fire({
           icon: 'error',
           title: 'Opps, hubo un problema',
@@ -65,6 +70,17 @@ export class AuthService {
           confirmButtonText: 'Reintentar'
         })
       })
+  }
+
+  async crearDatosMedico(user: UserCredential, datosMedico: Medico){
+    await setDoc(doc(this.firestore, "medicos", user.user.uid), {
+      id: user.user.uid,
+      nombre: datosMedico.nombre,
+      apellidos: datosMedico.apellidos,
+      correo: user.user.email,
+      edad: 0,
+      titulo: '',
+    });
   }
     
 

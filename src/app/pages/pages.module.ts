@@ -9,13 +9,17 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
+import { HomeComponent } from './home/home.component';
+import { RegistrarPacienteComponent } from './pacientes/registrar-paciente/registrar-paciente.component';
 
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    RegistrarPacienteComponent
   ],
   imports: [
     CommonModule,

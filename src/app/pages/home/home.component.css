@@ -1,0 +1,11 @@
+.container{
+    padding: 15px;
+}
+
+.col{
+    margin: 10px;
+}
+
+img{
+    max-width: 100px;
+}
