@@ -10,7 +10,7 @@ import { ConsultaPacienteComponent } from './pages/pacientes/consulta-paciente/c
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
+    component: HomeComponent,
     pathMatch: 'full',
   },
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
     component: RegistrarPacienteComponent
   },
   {
-    path: 'consultarPaciente/:nombre',
+    path: 'consultarPaciente/:id',
     component: ConsultaPacienteComponent
   },
 ];

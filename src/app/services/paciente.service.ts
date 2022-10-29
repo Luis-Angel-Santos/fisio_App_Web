@@ -58,24 +58,44 @@ export class PacienteService {
 
   async mostrarPacientes(){
     const querySnapshot = await getDocs(collection(this.firestore, "pacientes"));
-      querySnapshot.forEach((doc) => {
-          if(doc.exists()){
-            const datosPaciente: Paciente = {
-              nombre: doc.data()['nombre'],
-              apellidos: doc.data()['apellidos'],
-              correo:doc.data()['correo'],
-              telefono: doc.data()['telefono'],
-              foto: doc.data()['foto'],
-              id: doc.data()['id']
-            }
-            this.pacientes.push(datosPaciente);
-          }else{
-            console.log('no');
+    querySnapshot.forEach((doc) => {
+        if(doc.exists()){
+          const datosPaciente: Paciente = {
+            nombre: doc.data()['nombre'],
+            apellidos: doc.data()['apellidos'],
+            correo:doc.data()['correo'],
+            telefono: doc.data()['telefono'],
+            foto: doc.data()['foto'],
+            id: doc.data()['id']
           }
-      });
-      return this.pacientes;
+          this.pacientes.push(datosPaciente);
+        }else{
+           console.log('no');
+        }
+    });
+    return this.pacientes;
   }
 
+  async mostrarUnPaciente(id: string){
+    var paciente = await getDoc(doc(this.firestore, 'pacientes', id))
+      .then((doc) => {
+        if(doc.exists()){
+          const datosPaciente: Paciente = {
+            nombre: doc.data()['nombre'],
+            apellidos: doc.data()['apellidos'],
+            correo:doc.data()['correo'],
+            telefono: doc.data()['telefono'],
+            foto: doc.data()['foto'],
+            id: doc.data()['id']
+          }
+          return datosPaciente;
+        }else{
+          console.log("No such document!");
+          return;
+        }
+    });
+    return paciente;
+  }
  
 
 

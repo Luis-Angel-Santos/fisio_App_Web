@@ -1,1 +1,8 @@
-<p>consulta-paciente works!</p>
+<div class="container" *ngIf="pacienteSeleccionado">
+    <h2>Nombre: {{pacienteSeleccionado.nombre}}</h2>
+    <h3>Apelidos: {{pacienteSeleccionado.apellidos}}</h3>
+    <hr>
+    <p>Correo: {{pacienteSeleccionado.correo}}</p>
+    <p>Telefono: {{pacienteSeleccionado.telefono}}</p>
+    <img src="{{pacienteSeleccionado.foto}}" alt="">
+</div>
