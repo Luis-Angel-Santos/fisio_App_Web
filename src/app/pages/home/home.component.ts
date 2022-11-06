@@ -11,11 +11,20 @@ export class HomeComponent implements OnInit {
 
   pacientes!: any;
 
+  eliminarPaciente(idPaciente: string){
+    this.pacientesService.eliminarPaciente(idPaciente) 
+      .then(() => this.mostrarPacientes());
+  }
+
+  mostrarPacientes(){
+    this.pacientesService.mostrarPacientes()
+      .then((res) => this.pacientes = res );
+  }
+
   constructor(private pacientesService: PacienteService) { }
 
-  ngOnInit(): void {   
-    this.pacientesService.mostrarPacientes().then((res) => { this.pacientes = res })
-    
+  ngOnInit(): void { 
+    this.mostrarPacientes();
   } 
 
 }

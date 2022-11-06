@@ -12,6 +12,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
 import { RegistrarPacienteComponent } from './pacientes/registrar-paciente/registrar-paciente.component';
 import { ConsultaPacienteComponent } from './pacientes/consulta-paciente/consulta-paciente.component';
+import { EditarPacienteComponent } from './pacientes/editar-paciente/editar-paciente.component';
 
 
 
@@ -21,7 +22,8 @@ import { ConsultaPacienteComponent } from './pacientes/consulta-paciente/consult
     RegisterComponent,
     HomeComponent,
     RegistrarPacienteComponent,
-    ConsultaPacienteComponent
+    ConsultaPacienteComponent,
+    EditarPacienteComponent
   ],
   imports: [
     CommonModule,

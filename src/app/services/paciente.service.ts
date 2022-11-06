@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { getAuth, createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { collection, getDocs, getFirestore, onSnapshot, query, where } from "firebase/firestore";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, getDocs, getFirestore, deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
 import { Paciente } from '../interfaces/paciente';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -12,6 +11,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class PacienteService {
+
   app = initializeApp(environment.firebase);
   auth = getAuth(this.app);
   firestore = getFirestore(this.app);
@@ -97,8 +97,60 @@ export class PacienteService {
     return paciente;
   }
  
+  async eliminarPaciente(id: string){
+    Swal.fire({
+      icon: 'warning',
+      title: 'Eliminar Paciente',
+      text: '¿Esta seguro? Esta Acción no se puede revertir',
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: 'red',
+      cancelButtonColor: 'yellow'
+    }).then(async (resp) => {
+      if(resp.isConfirmed){
+        await deleteDoc(doc(this.firestore, "pacientes", id))
+          .then(() => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Paciente eliminado',
+              text: 'Paciente eliminado de forma correcta',
+              showConfirmButton: true,
+              confirmButtonText: 'Ok'
+            })
+          });
+      }
+    }).catch(error => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Opps, hubo un problema',
+        text: error.message,
+        showConfirmButton: true,
+        confirmButtonText: 'Reintentar'
+      })
+    }) 
+  }
 
-
+  async editarPaciente(paciente: Paciente, idPaciente: string){
+    await setDoc(doc(this.firestore, "pacientes", idPaciente), {
+      id: idPaciente,
+      nombre: paciente.nombre,
+      apellidos: paciente.apellidos,
+      correo: paciente.correo,
+      telefono: paciente.telefono,
+      foto: ''
+    }).then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Datos Modificados',
+        text: 'Información actualizada',
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false
+      }).then(() => this.router.navigateByUrl('home'))
+    })
+  }
 
   constructor(private router: Router) { }
 }
