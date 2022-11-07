@@ -15,7 +15,6 @@ import { ConsultaPacienteComponent } from './pacientes/consulta-paciente/consult
 import { EditarPacienteComponent } from './pacientes/editar-paciente/editar-paciente.component';
 
 
-
 @NgModule({
   declarations: [
     LoginComponent,

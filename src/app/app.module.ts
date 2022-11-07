@@ -13,10 +13,14 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 
 //Modulos creados por nosotros
 import { PagesModule } from './pages/pages.module';
+import { MenuComponent } from './shared/menu/menu.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MenuComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

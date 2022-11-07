@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { getAuth, createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { collection, getDocs, getFirestore, deleteDoc, doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, getDocs, getFirestore, deleteDoc, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { Paciente } from '../interfaces/paciente';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { collectionData } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -133,7 +135,7 @@ export class PacienteService {
   }
 
   async editarPaciente(paciente: Paciente, idPaciente: string){
-    await setDoc(doc(this.firestore, "pacientes", idPaciente), {
+    await updateDoc(doc(this.firestore, "pacientes", idPaciente), {
       id: idPaciente,
       nombre: paciente.nombre,
       apellidos: paciente.apellidos,

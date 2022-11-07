@@ -12,8 +12,7 @@ export class HomeComponent implements OnInit {
   pacientes!: any;
 
   eliminarPaciente(idPaciente: string){
-    this.pacientesService.eliminarPaciente(idPaciente) 
-      .then(() => this.mostrarPacientes());
+    this.pacientesService.eliminarPaciente(idPaciente);
   }
 
   mostrarPacientes(){
@@ -24,7 +23,9 @@ export class HomeComponent implements OnInit {
   constructor(private pacientesService: PacienteService) { }
 
   ngOnInit(): void { 
-    this.mostrarPacientes();
+    setTimeout(() => {
+      this.mostrarPacientes();
+    }, 1000);
   } 
 
 }
