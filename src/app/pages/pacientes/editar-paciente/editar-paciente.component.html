@@ -1,44 +1,33 @@
-<h1>Editar datos del paciente</h1>
+<div class="container">
+    <br>
+    <h1>Editar datos del paciente</h1>
+</div>
 <div class="container text-center" *ngIf="pacienteSeleccionado">
     <mat-card class="example-card">
-      <img *ngIf="pacienteSeleccionado.foto" src="{{pacienteSeleccionado.foto}}" alt="paciente" class="ronded mx-auto d-block">
-      <img *ngIf="!pacienteSeleccionado.foto" src="../../../../assets/user.png" alt="paciente" class="ronded mx-auto d-block" width="100px">
-      <br>
-      <mat-card-title>Editar información</mat-card-title>
-      <hr>
-      <form (ngSubmit)="enviar()" class="row" [formGroup]="user" novalidate>
-        <mat-form-field class="example-full-width col" appearance="fill">
-          <mat-label>{{pacienteSeleccionado.nombre}}</mat-label>
-           <input 
-              matInput 
-              placeholder="Nombre del paciente" 
-              formControlName="nombre">
-         </mat-form-field>
-         <mat-form-field class="example-full-width col" appearance="fill">
-           <mat-label>{{pacienteSeleccionado.apellidos}}</mat-label>
-           <input 
-              matInput 
-              placeholder="Apellidos"
-              formControlName="apellidos">
-         </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-           <mat-label>{{pacienteSeleccionado.correo}}</mat-label>
-           <input 
-              type="email" 
-              matInput 
-              placeholder="Correo" 
-              formControlName="correo">
-        </mat-form-field>    
-        <mat-form-field class="example-full-width col" appearance="fill">
-          <mat-label>{{pacienteSeleccionado.telefono}}</mat-label>
-          <input 
-              type="tel" 
-              matInput 
-              placeholder="Telefono" 
-              formControlName="telefono">
-        </mat-form-field>
-        <button type="submit" mat-raised-button color="primary" [disabled]="user.invalid">Listo</button>
-      </form>
-      <hr>
+        <img *ngIf="pacienteSeleccionado.foto" src="{{pacienteSeleccionado.foto}}" alt="paciente" class="ronded mx-auto d-block">
+        <img *ngIf="!pacienteSeleccionado.foto" src="../../../../assets/user.png" alt="paciente" class="ronded mx-auto d-block" width="100px">
+        <br>
+        <mat-card-title>Editar información</mat-card-title>
+        <hr>
+        <form (ngSubmit)="enviar()" class="row" [formGroup]="user" novalidate>
+            <mat-form-field class="example-full-width col" appearance="fill">
+                <mat-label>{{pacienteSeleccionado.nombre}}</mat-label>
+                <input matInput placeholder="Nombre del paciente" formControlName="nombre">
+            </mat-form-field>
+            <mat-form-field class="example-full-width col" appearance="fill">
+                <mat-label>{{pacienteSeleccionado.apellidos}}</mat-label>
+                <input matInput placeholder="Apellidos" formControlName="apellidos">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{pacienteSeleccionado.correo}}</mat-label>
+                <input type="email" matInput placeholder="Correo" formControlName="correo">
+            </mat-form-field>
+            <mat-form-field class="example-full-width col" appearance="fill">
+                <mat-label>{{pacienteSeleccionado.telefono}}</mat-label>
+                <input type="tel" matInput placeholder="Telefono" formControlName="telefono">
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="primary" [disabled]="user.invalid">Listo</button>
+        </form>
+        <hr>
     </mat-card>
-  </div>
+</div>

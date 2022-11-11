@@ -1,8 +1,9 @@
 <div class="container" *ngIf="pacienteSeleccionado">
+    <br>
     <h2>Nombre: {{pacienteSeleccionado.nombre}}</h2>
-    <h3>Apelidos: {{pacienteSeleccionado.apellidos}}</h3>
+    <h3><b>Apellidos:</b> {{pacienteSeleccionado.apellidos}}</h3>
     <hr>
-    <p>Correo: {{pacienteSeleccionado.correo}}</p>
-    <p>Telefono: {{pacienteSeleccionado.telefono}}</p>
+    <p><b>Correo:</b> {{pacienteSeleccionado.correo}}</p>
+    <p><b>Telefono:</b> {{pacienteSeleccionado.telefono}}</p>
     <img src="{{pacienteSeleccionado.foto}}" alt="">
 </div>
