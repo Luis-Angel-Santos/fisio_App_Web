@@ -1,0 +1,15 @@
+.icon_nav {
+    color: #f4f6f6;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+}
+
+.title_nav {
+    line-height: 2px;
+}
+
+.nav-item {
+    display: inline-block;
+    vertical-align: top;
+}
