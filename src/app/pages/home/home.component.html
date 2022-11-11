@@ -1,7 +1,7 @@
 <div class="container text-center">
     <div class="pacientes row row-cols-4">
         <mat-card class="col">
-            <img src="../../../assets/newPaciente.png" class="img-fluid" alt="nuevoPaciente">
+            <img src="../../../assets/newPaciente_alt.png" class="img-fluid" alt="nuevoPaciente">
             <br>
             <br>
             <mat-card-title>Nuevo paciente</mat-card-title>
@@ -15,7 +15,9 @@
         </mat-card>
         <mat-card class="col" *ngFor="let paciente of pacientes">
             <img *ngIf="paciente['foto'] == false" src="../../../assets/user.png" class="img-fluid" alt="paciente">
-            <img *ngIf="paciente['foto']" src="{{paciente['foto']}}" class="img-fluid" alt="nuevoPaciente">        
+            <img *ngIf="paciente['foto']" src="{{paciente['foto']}}" class="img-fluid" alt="nuevoPaciente">
+            <br>
+            <br>
             <mat-card-title>{{paciente['nombre']}}</mat-card-title>
             <mat-card-subtitle>{{paciente['nombre']}} {{paciente['apellidos']}}</mat-card-subtitle>
             <button mat-button color="warn">
@@ -31,6 +33,6 @@
                 </button>
             </mat-card-actions>
         </mat-card>
-        
+
     </div>
 </div>

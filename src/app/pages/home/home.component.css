@@ -1,11 +1,17 @@
-.container{
+.container {
     padding: 15px;
 }
 
-.col{
+.col {
     margin: 10px;
+    transition: 0.3s ease-in-out;
 }
 
-img{
+.col:hover {
+    transform: scale(1.04);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+img {
     max-width: 100px;
 }
