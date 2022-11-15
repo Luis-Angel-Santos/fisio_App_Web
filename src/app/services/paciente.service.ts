@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { getAuth, createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { collection, getDocs, getFirestore, deleteDoc, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { collection, getDocs, getFirestore, deleteDoc, doc, getDoc, setDoc, updateDoc, query, onSnapshot } from "firebase/firestore";
 import { Paciente } from '../interfaces/paciente';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { collectionData } from '@angular/fire/firestore';
+import { collectionData, Firestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -58,8 +58,10 @@ export class PacienteService {
     });
   }
 
-  async mostrarPacientes(){
-    const querySnapshot = await getDocs(collection(this.firestore, "pacientes"));
+  mostrarPacientes(): Observable<Paciente[]>{
+    const placeRef = collection(this.firestore, 'pacientes'); 
+    return collectionData(placeRef, {idField: 'id'}) as Observable<Paciente[]>
+    /*const querySnapshot = await getDocs(collection(this.firestore, "pacientes"));
     querySnapshot.forEach((doc) => {
         if(doc.exists()){
           const datosPaciente: Paciente = {
@@ -75,7 +77,7 @@ export class PacienteService {
            console.log('no');
         }
     });
-    return this.pacientes;
+    return this.pacientes;*/
   }
 
   async mostrarUnPaciente(id: string){
@@ -154,5 +156,5 @@ export class PacienteService {
     })
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private db: Firestore) { }
 }

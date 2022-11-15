@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PacienteService } from '../../services/paciente.service';
 import { Paciente } from '../../interfaces/paciente';
+import { Firestore } from 'firebase/firestore';
 
 @Component({
   selector: 'app-home',
@@ -9,23 +10,23 @@ import { Paciente } from '../../interfaces/paciente';
 })
 export class HomeComponent implements OnInit {
 
-  pacientes!: any;
+  pacientes!: Paciente[];
 
   eliminarPaciente(idPaciente: string){
     this.pacientesService.eliminarPaciente(idPaciente);
   }
 
-  mostrarPacientes(){
-    this.pacientesService.mostrarPacientes()
-      .then((res) => this.pacientes = res );
-  }
 
-  constructor(private pacientesService: PacienteService) { }
+
+  constructor(private pacientesService: PacienteService,
+              ) { }
 
   ngOnInit(): void { 
-    setTimeout(() => {
-      this.mostrarPacientes();
-    }, 1000);
+    this.pacientesService.mostrarPacientes()
+      .subscribe(pacientes => {
+        this.pacientes = pacientes;
+      })
+     
   } 
 
 }
