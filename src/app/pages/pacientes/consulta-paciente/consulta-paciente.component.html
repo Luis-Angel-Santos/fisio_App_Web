@@ -13,7 +13,7 @@
             <div class="container-datos">
                 <mat-card class="example-card">
                     <p>Por favor rellene todos los campos</p>
-                    <form class="row" novalidate>
+                    <form (ngSubmit)="enviarDatos()" class="row" novalidate>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Alimentación</mat-label>
                             <input type="text" matInput placeholder="Alimentación del paciente" formControlName="alimentacion">
@@ -50,7 +50,7 @@
                             <mat-radio-button class="option-button" value="2">No</mat-radio-button>
                         </mat-radio-group>
                         <br><br><hr>
-                        <button type="submit" mat-raised-button color="primary" (click)="enviarDatos()">Guardar</button>
+                        <button type="submit" mat-raised-button color="primary">Guardar</button>
                     </form>
                     <hr>
                 </mat-card>
@@ -60,7 +60,7 @@
             <div class="container-datos">
                 <mat-card class="example-card">
                     <p>Por favor rellene todos los campos</p>
-                    <form class="row" novalidate>
+                    <form (ngSubmit)="enviarDatos()" class="row" novalidate>
                         <div class="container col">
                             <label class="option" id="example-radio-group-label">Sarampion</label>
                             <br>
@@ -169,17 +169,88 @@
                             </mat-radio-group>
                         </div>
                         <br><br><hr>
-                        <button type="submit" mat-raised-button color="primary" (click)="enviarDatos()">Guardar</button>
+                        <button type="submit" mat-raised-button color="primary">Guardar</button>
                     </form>
                     <hr>
                 </mat-card>
             </div>
         </mat-tab>
         <mat-tab label="Exploracion Física">
-
+            <div class="container-datos">
+                <mat-card class="example-card">
+                    <p>Por favor rellene todos los campos</p>
+                    <form (ngSubmit)="enviarDatos()" class="row" novalidate>
+                        <mat-form-field class="example-full-width col" appearance="fill">
+                            <mat-label>Peso</mat-label>
+                            <input type="text" matInput placeholder="Peso del paciente" formControlName="peso">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width col" appearance="fill">
+                            <mat-label>Talla</mat-label>
+                            <input type="text" matInput placeholder="Talla del paciente" formControlName="talla">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width col" appearance="fill">
+                            <mat-label>TA</mat-label>
+                            <input type="text" matInput placeholder="TA" formControlName="ta">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width col" appearance="fill">
+                            <mat-label>FC</mat-label>
+                            <input type="text" matInput placeholder="FC" formControlName="fc">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width col" appearance="fill">
+                            <mat-label>FR</mat-label>
+                            <input type="text" matInput placeholder="FR" formControlName="fr">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Datos subjetivos</mat-label>
+                            <textarea matInput placeholder="..."></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Datos objetivos</mat-label>
+                            <textarea matInput placeholder="..."></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Estudios diagnósticos</mat-label>
+                            <textarea matInput placeholder="..."></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Impresión diagnósticos</mat-label>
+                            <textarea matInput placeholder="..."></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Diagnóstico</mat-label>
+                            <textarea matInput placeholder="..."></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Pronóstico</mat-label>
+                            <textarea matInput placeholder="..."></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Plan de tratamiento</mat-label>
+                            <textarea matInput placeholder="..."></textarea>
+                        </mat-form-field>
+                        <br><br><hr>
+                        <button type="submit" mat-raised-button color="primary">Guardar</button>
+                    </form>
+                    <hr>
+                </mat-card>
+            </div>
         </mat-tab>
         <mat-tab label="Notas de evolución">
-
+            <div class="container-datos">
+                <mat-card class="example-card">
+                    <p>Por favor rellene todos los campos</p>
+                    <form (ngSubmit)="enviarDatos()" class="row" novalidate>                        
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Descripción</mat-label>
+                            <textarea matInput placeholder="..."></textarea>
+                        </mat-form-field>
+                        
+                        <br><br><hr>
+                        <button type="submit" mat-raised-button color="primary">Guardar</button>
+                    </form>
+                    <hr>
+                </mat-card>
+            </div>
         </mat-tab>
     </mat-tab-group>
 </div>
