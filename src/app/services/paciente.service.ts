@@ -61,23 +61,6 @@ export class PacienteService {
   mostrarPacientes(): Observable<Paciente[]>{
     const placeRef = collection(this.firestore, 'pacientes'); 
     return collectionData(placeRef, {idField: 'id'}) as Observable<Paciente[]>
-    /*const querySnapshot = await getDocs(collection(this.firestore, "pacientes"));
-    querySnapshot.forEach((doc) => {
-        if(doc.exists()){
-          const datosPaciente: Paciente = {
-            nombre: doc.data()['nombre'],
-            apellidos: doc.data()['apellidos'],
-            correo:doc.data()['correo'],
-            telefono: doc.data()['telefono'],
-            foto: doc.data()['foto'],
-            id: doc.data()['id']
-          }
-          this.pacientes.push(datosPaciente);
-        }else{
-           console.log('no');
-        }
-    });
-    return this.pacientes;*/
   }
 
   async mostrarUnPaciente(id: string){

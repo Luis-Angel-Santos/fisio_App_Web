@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PacienteService } from 'src/app/services/paciente.service';
+import Swal from 'sweetalert2';
 import { Paciente } from '../../../interfaces/paciente';
 
 @Component({
@@ -12,6 +13,17 @@ export class ConsultaPacienteComponent implements OnInit {
 
   pacienteId!: string;
   pacienteSeleccionado!: Paciente;
+
+  enviarDatos(){
+    Swal.fire({
+      icon: 'info',
+      title: 'Estamos trabajando en ello :)',
+      text: 'Calidad no cantidad',
+      timer: 3000,
+      timerProgressBar: true,
+      showConfirmButton: false
+    });
+  }
 
   constructor(private rutaActiva: ActivatedRoute,
               private pacienteService: PacienteService) { }

@@ -12,14 +12,11 @@ export class HomeComponent implements OnInit {
 
   pacientes!: Paciente[];
 
-  eliminarPaciente(idPaciente: string){
+  eliminarPaciente(idPaciente: any){
     this.pacientesService.eliminarPaciente(idPaciente);
   }
 
-
-
-  constructor(private pacientesService: PacienteService,
-              ) { }
+  constructor(private pacientesService: PacienteService) { }
 
   ngOnInit(): void { 
     this.pacientesService.mostrarPacientes()

@@ -5,5 +5,181 @@
     <hr>
     <p><b>Correo:</b> {{pacienteSeleccionado.correo}}</p>
     <p><b>Telefono:</b> {{pacienteSeleccionado.telefono}}</p>
-    <img src="{{pacienteSeleccionado.foto}}" alt="">
+    <img src="{{pacienteSeleccionado.foto}}" alt="paciente">
+</div>
+<div class="container">
+    <mat-tab-group mat-align-tabs="start">
+        <mat-tab label="Antecedentes personales no patológicos">
+            <div class="container-datos">
+                <mat-card class="example-card">
+                    <p>Por favor rellene todos los campos</p>
+                    <form class="row" novalidate>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Alimentación</mat-label>
+                            <input type="text" matInput placeholder="Alimentación del paciente" formControlName="alimentacion">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Pasatiempos</mat-label>
+                            <input type="text" matInput placeholder="Pasatiempos del paciente" formControlName="pasatiempos">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Religión</mat-label>
+                            <input type="text" matInput placeholder="Religión del paciente" formControlName="religion">
+                        </mat-form-field>
+                        <label class="option" id="example-radio-group-label">¿Realiza ejercicio?</label>
+                        <mat-radio-group class="col" aria-labelledby="example-radio-group-label" aria-label="Selecciona una opción">
+                            <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                            
+                            <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                        </mat-radio-group>
+                        <label class="option" id="example-radio-group-label-alcohol">¿Ingiere bebidas alcoholicas?</label>
+                        <mat-radio-group class="col" aria-labelledby="example-radio-group-label-alcohol" aria-label="Selecciona una opción">
+                            <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                            
+                            <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                        </mat-radio-group>
+                        <label class="option" id="example-radio-group-label-drogas">¿Ingiere algun tipo de estupefaciente?</label>
+                        <mat-radio-group class="col" aria-labelledby="example-radio-group-label-drogas" aria-label="Selecciona una opción">
+                            <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                            
+                            <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                        </mat-radio-group>
+                        <label class="option" id="example-radio-group-label-fuma">¿Consume tabaco?</label>
+                        <mat-radio-group class="col" aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
+                            <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                            <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                        </mat-radio-group>
+                        <br><br><hr>
+                        <button type="submit" mat-raised-button color="primary" (click)="enviarDatos()">Guardar</button>
+                    </form>
+                    <hr>
+                </mat-card>
+            </div>
+        </mat-tab>
+        <mat-tab label="Antecedentes personales patológicos">
+            <div class="container-datos">
+                <mat-card class="example-card">
+                    <p>Por favor rellene todos los campos</p>
+                    <form class="row" novalidate>
+                        <div class="container col">
+                            <label class="option" id="example-radio-group-label">Sarampion</label>
+                            <br>
+                            <mat-radio-group class="example-full-width" aria-labelledby="example-radio-group-label" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <label class="option" id="example-radio-group-label-alcohol">Rubeola</label>
+                            <br>
+                            <mat-radio-group  aria-labelledby="example-radio-group-label-alcohol" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <label class="option" id="example-radio-group-label-drogas">Varicela</label>
+                            <br>
+                            <mat-radio-group  aria-labelledby="example-radio-group-label-drogas" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <label class="option" id="example-radio-group-label-fuma">Escarlatina</label>
+                            <br>
+                            <mat-radio-group  aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <label class="option" id="example-radio-group-label-fuma">Polomelitis</label>
+                            <br>
+                            <mat-radio-group  aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <label class="option" id="example-radio-group-label-fuma">Hepatitis</label>
+                            <br>
+                            <mat-radio-group  aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <label class="option" id="example-radio-group-label-fuma">Transfusiones</label>
+                            <br>
+                            <mat-radio-group  aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div class="container col">
+                            <br>
+                            <label class="option" id="example-radio-group-label">Cáncer</label>
+                            <br>
+                            <mat-radio-group  aria-labelledby="example-radio-group-label" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <label class="option" id="example-radio-group-label-alcohol">Asma</label>
+                            <br>
+                            <mat-radio-group class="col" aria-labelledby="example-radio-group-label-alcohol" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <label class="option" id="example-radio-group-label-drogas">Diabetes</label>
+                            <br>
+                            <mat-radio-group class="col" aria-labelledby="example-radio-group-label-drogas" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <label class="option" id="example-radio-group-label-fuma">Hipertensión</label>
+                            <br>
+                            <mat-radio-group class="col" aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <label class="option" id="example-radio-group-label-fuma">Obesidad</label>
+                            <br>
+                            <mat-radio-group class="col" aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <label class="option" id="example-radio-group-label-fuma">Alergias</label>
+                            <br>
+                            <mat-radio-group class="col" aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <label class="option" id="example-radio-group-label-fuma">Cirugias</label>
+                            <br>
+                            <mat-radio-group class="col" aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
+                                
+                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <br><br><hr>
+                        <button type="submit" mat-raised-button color="primary" (click)="enviarDatos()">Guardar</button>
+                    </form>
+                    <hr>
+                </mat-card>
+            </div>
+        </mat-tab>
+        <mat-tab label="Exploracion Física">
+
+        </mat-tab>
+        <mat-tab label="Notas de evolución">
+
+        </mat-tab>
+    </mat-tab-group>
 </div>
