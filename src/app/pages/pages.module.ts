@@ -17,6 +17,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTabsModule,
     MatTreeModule,
     MatChipsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressBarModule,
   ],
   exports: [
     LoginComponent,

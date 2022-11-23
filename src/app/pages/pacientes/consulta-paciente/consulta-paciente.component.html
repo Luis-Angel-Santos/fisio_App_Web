@@ -4,8 +4,9 @@
     <h3><b>Apellidos:</b> {{pacienteSeleccionado.apellidos}}</h3>
     <hr>
     <p><b>Correo:</b> {{pacienteSeleccionado.correo}}</p>
+    <p><b>Expediente: {{pacienteSeleccionado.idExpedienteMedico}}</b></p>
     <p><b>Telefono:</b> {{pacienteSeleccionado.telefono}}</p>
-    <img src="{{pacienteSeleccionado.foto}}" alt="paciente">
+    <img src="{{pacienteSeleccionado.foto}}" class="fotoPerfil" alt="paciente">
 </div>
 <div class="container">
     <mat-tab-group mat-align-tabs="start">
@@ -13,44 +14,39 @@
             <div class="container-datos">
                 <mat-card class="example-card">
                     <p>Por favor rellene todos los campos</p>
-                    <form (ngSubmit)="enviarDatos()" class="row" novalidate>
+                    <form (ngSubmit)="enviarDatos()" class="row" [formGroup]="expedienteMedico" novalidate>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Alimentación</mat-label>
-                            <input type="text" matInput placeholder="Alimentación del paciente" formControlName="alimentacion">
+                            <input type="text" formControlName="alimentacion" matInput placeholder="Alimentación del paciente" formControlName="alimentacion">
                         </mat-form-field>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Pasatiempos</mat-label>
-                            <input type="text" matInput placeholder="Pasatiempos del paciente" formControlName="pasatiempos">
+                            <input type="text" formControlName="pasatiempos"matInput placeholder="Pasatiempos del paciente" formControlName="pasatiempos">
                         </mat-form-field>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Religión</mat-label>
-                            <input type="text" matInput placeholder="Religión del paciente" formControlName="religion">
+                            <input type="text" formControlName="religion" matInput placeholder="Religión del paciente" formControlName="religion">
                         </mat-form-field>
-                        <label class="option" id="example-radio-group-label">¿Realiza ejercicio?</label>
-                        <mat-radio-group class="col" aria-labelledby="example-radio-group-label" aria-label="Selecciona una opción">
-                            <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                            
-                            <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                        <label class="option" id="example-radio-group-label-ejercicio">¿Realiza ejercicio?</label>
+                        <mat-radio-group class="col" formControlName="ejercicio" aria-labelledby="example-radio-group-label-ejercicio" aria-label="Selecciona una opción">
+                            <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                            <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                         </mat-radio-group>
                         <label class="option" id="example-radio-group-label-alcohol">¿Ingiere bebidas alcoholicas?</label>
-                        <mat-radio-group class="col" aria-labelledby="example-radio-group-label-alcohol" aria-label="Selecciona una opción">
-                            <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                            
-                            <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                        <mat-radio-group class="col" formControlName="alcohol" aria-labelledby="example-radio-group-label-alcohol" aria-label="Selecciona una opción">
+                            <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                            <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                         </mat-radio-group>
                         <label class="option" id="example-radio-group-label-drogas">¿Ingiere algun tipo de estupefaciente?</label>
-                        <mat-radio-group class="col" aria-labelledby="example-radio-group-label-drogas" aria-label="Selecciona una opción">
-                            <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                            
-                            <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                        <mat-radio-group class="col" formControlName="drogas" aria-labelledby="example-radio-group-label-drogas" aria-label="Selecciona una opción">
+                            <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                            <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                         </mat-radio-group>
                         <label class="option" id="example-radio-group-label-fuma">¿Consume tabaco?</label>
-                        <mat-radio-group class="col" aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
-                            <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                            <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                        <mat-radio-group class="col" formControlName="fuma" aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
+                            <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                            <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                         </mat-radio-group>
-                        <br><br><hr>
-                        <button type="submit" mat-raised-button color="primary">Guardar</button>
                     </form>
                     <hr>
                 </mat-card>
@@ -60,116 +56,108 @@
             <div class="container-datos">
                 <mat-card class="example-card">
                     <p>Por favor rellene todos los campos</p>
-                    <form (ngSubmit)="enviarDatos()" class="row" novalidate>
+                    <form (ngSubmit)="enviarDatos()" class="row" [formGroup]="expedienteMedico" novalidate>
                         <div class="container col">
-                            <label class="option" id="example-radio-group-label">Sarampion</label>
+                            <label class="option" id="example-radio-group-label-sarampion">Sarampion</label>
                             <br>
-                            <mat-radio-group class="example-full-width" aria-labelledby="example-radio-group-label" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="sarampion" aria-labelledby="example-radio-group-label-sarampion" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
-                            <label class="option" id="example-radio-group-label-alcohol">Rubeola</label>
+                            <label class="option" id="example-radio-group-label-rubeola">Rubeola</label>
                             <br>
-                            <mat-radio-group  aria-labelledby="example-radio-group-label-alcohol" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="rubeola" aria-labelledby="example-radio-group-label-rubeola" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
-                            <label class="option" id="example-radio-group-label-drogas">Varicela</label>
+                            <label class="option" id="example-radio-group-label-varicela">Varicela</label>
                             <br>
-                            <mat-radio-group  aria-labelledby="example-radio-group-label-drogas" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="varicela" aria-labelledby="example-radio-group-label-varicela" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
-                            <label class="option" id="example-radio-group-label-fuma">Escarlatina</label>
+                            <label class="option" id="example-radio-group-label-escarlatina">Escarlatina</label>
                             <br>
-                            <mat-radio-group  aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="escarlatina" aria-labelledby="example-radio-group-label-escarlatina" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
-                            <label class="option" id="example-radio-group-label-fuma">Polomelitis</label>
+                            <label class="option" id="example-radio-group-label-polomelitis">Polomelitis</label>
                             <br>
-                            <mat-radio-group  aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="polomelitis" aria-labelledby="example-radio-group-label-polomelitis" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
-                            <label class="option" id="example-radio-group-label-fuma">Hepatitis</label>
+                            <label class="option" id="example-radio-group-label-hepatitis">Hepatitis</label>
                             <br>
-                            <mat-radio-group  aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="hepatitis" aria-labelledby="example-radio-group-label-hepatitis" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
-                            <label class="option" id="example-radio-group-label-fuma">Transfusiones</label>
+                            <label class="option" id="example-radio-group-label-transfuciones">Transfusiones</label>
                             <br>
-                            <mat-radio-group  aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="transfuciones" aria-labelledby="example-radio-group-label-transfuciones" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                         </div>
                         <div class="container col">
                             <br>
-                            <label class="option" id="example-radio-group-label">Cáncer</label>
+                            <label class="option" id="example-radio-group-label-cancer">Cáncer</label>
                             <br>
-                            <mat-radio-group  aria-labelledby="example-radio-group-label" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="cancer" aria-labelledby="example-radio-group-label-cancer" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
-                            <label class="option" id="example-radio-group-label-alcohol">Asma</label>
+                            <label class="option" id="example-radio-group-label-asma">Asma</label>
                             <br>
-                            <mat-radio-group class="col" aria-labelledby="example-radio-group-label-alcohol" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="asma" class="col" aria-labelledby="example-radio-group-label-asma" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
-                            <label class="option" id="example-radio-group-label-drogas">Diabetes</label>
+                            <label class="option" id="example-radio-group-label-diabetes">Diabetes</label>
                             <br>
-                            <mat-radio-group class="col" aria-labelledby="example-radio-group-label-drogas" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="diabetes" class="col" aria-labelledby="example-radio-group-label-diabetes" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
-                            <label class="option" id="example-radio-group-label-fuma">Hipertensión</label>
+                            <label class="option" id="example-radio-group-label-hipertension">Hipertensión</label>
                             <br>
-                            <mat-radio-group class="col" aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="hipertension" class="col" aria-labelledby="example-radio-group-label-hipertension" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
-                            <label class="option" id="example-radio-group-label-fuma">Obesidad</label>
+                            <label class="option" id="example-radio-group-label-obesidad">Obesidad</label>
                             <br>
-                            <mat-radio-group class="col" aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="obesidad" class="col" aria-labelledby="example-radio-group-label-obesidad" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
-                            <label class="option" id="example-radio-group-label-fuma">Alergias</label>
+                            <label class="option" id="example-radio-group-label-alergias">Alergias</label>
                             <br>
-                            <mat-radio-group class="col" aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="alergias" class="col" aria-labelledby="example-radio-group-label-alergias" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                             <br>
-                            <label class="option" id="example-radio-group-label-fuma">Cirugias</label>
+                            <label class="option" id="example-radio-group-label-cirugias">Cirugias</label>
                             <br>
-                            <mat-radio-group class="col" aria-labelledby="example-radio-group-label-fuma" aria-label="Selecciona una opción">
-                                <mat-radio-button class="option-button" value="1">Si</mat-radio-button>
-                                
-                                <mat-radio-button class="option-button" value="2">No</mat-radio-button>
+                            <mat-radio-group formControlName="cirugias" class="col" aria-labelledby="example-radio-group-label-cirugias" aria-label="Selecciona una opción">
+                                <mat-radio-button class="option-button" value="si">Si</mat-radio-button>
+                                <mat-radio-button class="option-button" value="no">No</mat-radio-button>
                             </mat-radio-group>
                         </div>
-                        <br><br><hr>
-                        <button type="submit" mat-raised-button color="primary">Guardar</button>
                     </form>
                     <hr>
                 </mat-card>
@@ -179,7 +167,7 @@
             <div class="container-datos">
                 <mat-card class="example-card">
                     <p>Por favor rellene todos los campos</p>
-                    <form (ngSubmit)="enviarDatos()" class="row" novalidate>
+                    <form (ngSubmit)="enviarDatos()" class="row" [formGroup]="expedienteMedico" novalidate>
                         <mat-form-field class="example-full-width col" appearance="fill">
                             <mat-label>Peso</mat-label>
                             <input type="text" matInput placeholder="Peso del paciente" formControlName="peso">
@@ -202,34 +190,32 @@
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
                             <mat-label>Datos subjetivos</mat-label>
-                            <textarea matInput placeholder="..."></textarea>
+                            <textarea formControlName="datosSubjetivos" matInput placeholder="..."></textarea>
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
                             <mat-label>Datos objetivos</mat-label>
-                            <textarea matInput placeholder="..."></textarea>
+                            <textarea formControlName="datosObjetivos" matInput placeholder="..."></textarea>
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
                             <mat-label>Estudios diagnósticos</mat-label>
-                            <textarea matInput placeholder="..."></textarea>
+                            <textarea formControlName="estudiosDiagnosticos" matInput placeholder="..."></textarea>
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
                             <mat-label>Impresión diagnósticos</mat-label>
-                            <textarea matInput placeholder="..."></textarea>
+                            <textarea formControlName="impresionDiagnosticos" matInput placeholder="..."></textarea>
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
                             <mat-label>Diagnóstico</mat-label>
-                            <textarea matInput placeholder="..."></textarea>
+                            <textarea formControlName="diagnostico" matInput placeholder="..."></textarea>
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
                             <mat-label>Pronóstico</mat-label>
-                            <textarea matInput placeholder="..."></textarea>
+                            <textarea formControlName="pronostico" matInput placeholder="..."></textarea>
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
                             <mat-label>Plan de tratamiento</mat-label>
-                            <textarea matInput placeholder="..."></textarea>
+                            <textarea formControlName="tratamiento" matInput placeholder="..."></textarea>
                         </mat-form-field>
-                        <br><br><hr>
-                        <button type="submit" mat-raised-button color="primary">Guardar</button>
                     </form>
                     <hr>
                 </mat-card>
@@ -239,10 +225,10 @@
             <div class="container-datos">
                 <mat-card class="example-card">
                     <p>Por favor rellene todos los campos</p>
-                    <form (ngSubmit)="enviarDatos()" class="row" novalidate>                        
+                    <form (ngSubmit)="enviarDatos()" class="row" [formGroup]="expedienteMedico" novalidate>                        
                         <mat-form-field class="example-full-width">
                             <mat-label>Descripción</mat-label>
-                            <textarea matInput placeholder="..."></textarea>
+                            <textarea formControlName="evolucion" matInput placeholder="..."></textarea>
                         </mat-form-field>
                         
                         <br><br><hr>

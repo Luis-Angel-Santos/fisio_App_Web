@@ -2,10 +2,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable } from 'firebase/storage';
 import { PacienteService } from 'src/app/services/paciente.service';
 import { environment } from 'src/environments/environment';
 import { Paciente } from '../../../interfaces/paciente';
+
 
 @Component({
   selector: 'app-registrar-paciente',
@@ -20,6 +21,9 @@ export class RegistrarPacienteComponent implements OnInit {
   auth = getAuth(this.app);
   storage = getStorage(this.app);
   file!: File;
+  subirFoto!: boolean;
+  progreso: number = 0;
+  fotoSubida: string = '';
 
   private buildForm() {
     this.user = this.formBuilder.group({
@@ -27,36 +31,39 @@ export class RegistrarPacienteComponent implements OnInit {
       apellidos: ['', [Validators.required]],
       correo: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required]],
-      expedienteMedico: ['', [Validators.required]],
+      idExpedienteMedico: ['', [Validators.required]],
       foto: '',
       //recetasAsignadas: ['', [Validators.required]]
     });
   }
 
   onFileSelect(event: any) {
+    this.subirFoto = true;
     if (event.target.files.length > 0) {
       this.file = event.target.files[0];
     }
     var storageRef = ref(this.storage, this.file.name);
-    uploadBytes(storageRef, this.file)
-        .then((result) => {
-          getDownloadURL(ref(this.storage, this.file.name))
-            .then((url) => {
-              const xhr = new XMLHttpRequest();
-              xhr.responseType = 'blob';
-              xhr.onload = (event) => {
-                const blob = xhr.response;
-              };
-              xhr.open('GET', url);
-              xhr.send();
-              this.user.value['foto'] = url;
-              
-            })
-            .catch((error) => {
-              // Handle any errors
-            });
-    });
-  }
+    var uploadTask = uploadBytesResumable(storageRef, this.file);
+    uploadTask.on('state_changed', (snapshot) => {
+      //Obteniedo progreso de subida
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      this.progreso = progress;
+    },(error) => {
+      switch (error.code) {
+        case 'storage/unauthorized':
+          break;
+        case 'storage/canceled':
+          break;
+        case 'storage/unknown':
+          break;
+      }
+    },() => {
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        console.log('File available at', downloadURL);
+        this.fotoSubida = downloadURL;
+      });
+    })
+  };
 
 
   enviar(){    
@@ -66,7 +73,8 @@ export class RegistrarPacienteComponent implements OnInit {
         apellidos: this.user.value['apellidos'],
         correo: this.user.value['correo'],
         telefono: this.user.value['telefono'],
-        foto: this.user.value['foto'],
+        idExpedienteMedico: this.user.value['idExpedienteMedico'],
+        foto: this.fotoSubida
       };    
       this.authPaciente.crearPaciente(paciente);
       

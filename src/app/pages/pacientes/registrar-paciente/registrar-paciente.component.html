@@ -24,11 +24,13 @@
             </mat-form-field>
             <mat-form-field class="example-full-width col" appearance="fill">
                 <mat-label>Expediente</mat-label>
-                <input type="text" matInput placeholder="Ingresa el expediente medico" formControlName="expedienteMedico">
+                <input type="text" matInput placeholder="Ingresa el expediente medico" formControlName="idExpedienteMedico">
             </mat-form-field>
             <div class="mb-3">
                 <mat-label class="example-full-width col">Foto del paciente (opcional)</mat-label>
                 <input class="form-control" type="file" (change)="onFileSelect($event)">
+                <mat-progress-bar *ngIf="subirFoto" [value]="progreso" mode="determinate"></mat-progress-bar>
+                <p *ngIf="subirFoto">Subida: {{progreso}}%</p>
             </div>
             <p *ngIf="user.get('nombre')?.errors && user.get('nombre')?.touched" class="alert alert-danger">
                 Este campo es obligatorio
@@ -44,7 +46,7 @@
             <p *ngIf="user.get('telefono')?.errors && user.get('telefono')?.touched" class="alert alert-danger">
                 Este campo es obligatorio
             </p>
-            <p *ngIf="user.get('expedienteMedico')?.errors && user.get('expedienteMedico')?.touched" class="alert alert-danger">
+            <p *ngIf="user.get('idExpedienteMedico')?.errors && user.get('idExpedienteMedico')?.touched" class="alert alert-danger">
                 Este campo es obligatorio
             </p>
             <button type="submit" mat-raised-button color="primary" [disabled]="user.invalid">Registra Paciente</button>

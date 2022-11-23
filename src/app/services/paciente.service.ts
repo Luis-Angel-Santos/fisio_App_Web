@@ -54,6 +54,7 @@ export class PacienteService {
       apellidos: datosPaciente.apellidos,
       correo: user.user.email,
       telefono: datosPaciente.telefono,
+      expedienteMedico: datosPaciente.idExpedienteMedico,
       foto: datosPaciente.foto
     });
   }
@@ -73,6 +74,7 @@ export class PacienteService {
             correo:doc.data()['correo'],
             telefono: doc.data()['telefono'],
             foto: doc.data()['foto'],
+            idExpedienteMedico: doc.data()['expedienteMedico'],
             id: doc.data()['id']
           }
           return datosPaciente;
@@ -120,6 +122,26 @@ export class PacienteService {
   }
 
   async editarPaciente(paciente: Paciente, idPaciente: string){
+    await updateDoc(doc(this.firestore, "pacientes", idPaciente), {
+      id: idPaciente,
+      nombre: paciente.nombre,
+      apellidos: paciente.apellidos,
+      correo: paciente.correo,
+      telefono: paciente.telefono,
+      foto: ''
+    }).then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Datos Modificados',
+        text: 'Información actualizada',
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false
+      }).then(() => this.router.navigateByUrl('home'))
+    })
+  }
+
+  async crearHistorialMedico(paciente: Paciente, idPaciente: string){
     await updateDoc(doc(this.firestore, "pacientes", idPaciente), {
       id: idPaciente,
       nombre: paciente.nombre,
