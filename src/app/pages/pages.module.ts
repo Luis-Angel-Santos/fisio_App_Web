@@ -18,6 +18,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { HistorialClinicoComponent } from './pacientes/historial-clinico/historial-clinico.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     HomeComponent,
     RegistrarPacienteComponent,
     ConsultaPacienteComponent,
-    EditarPacienteComponent
+    EditarPacienteComponent,
+    HistorialClinicoComponent
   ],
   imports: [
     CommonModule,

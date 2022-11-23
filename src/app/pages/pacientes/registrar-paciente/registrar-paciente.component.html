@@ -44,7 +44,7 @@
                 Por favor introduce un correo valido
             </p>
             <p *ngIf="user.get('telefono')?.errors && user.get('telefono')?.touched" class="alert alert-danger">
-                Este campo es obligatorio
+                Introduzca un número telefonico valido 
             </p>
             <p *ngIf="user.get('idExpedienteMedico')?.errors && user.get('idExpedienteMedico')?.touched" class="alert alert-danger">
                 Este campo es obligatorio

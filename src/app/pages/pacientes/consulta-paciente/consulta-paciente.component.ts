@@ -93,7 +93,7 @@ export class ConsultaPacienteComponent implements OnInit {
       evolucion:this.expedienteMedico.value['evolucion'],
     };
     console.log(expediente);
-    
+    this.pacienteService.crearHistorialMedico(expediente, this.pacienteId);    
   }
 
   constructor(private rutaActiva: ActivatedRoute,

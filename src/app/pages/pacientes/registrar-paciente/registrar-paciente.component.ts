@@ -30,7 +30,7 @@ export class RegistrarPacienteComponent implements OnInit {
       nombre: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
       correo: ['', [Validators.required, Validators.email]],
-      telefono: ['', [Validators.required]],
+      telefono: ['', [Validators.required, Validators.minLength(10),  Validators.pattern("^[0-9]*$")]],
       idExpedienteMedico: ['', [Validators.required]],
       foto: '',
       //recetasAsignadas: ['', [Validators.required]]

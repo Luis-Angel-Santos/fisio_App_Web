@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { getAuth, createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { collection, getDocs, getFirestore, deleteDoc, doc, getDoc, setDoc, updateDoc, query, onSnapshot } from "firebase/firestore";
-import { Paciente } from '../interfaces/paciente';
+import { Paciente, ExpedienteMedico } from '../interfaces/paciente';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -141,18 +141,48 @@ export class PacienteService {
     })
   }
 
-  async crearHistorialMedico(paciente: Paciente, idPaciente: string){
+  async crearHistorialMedico(expedienteMedico: ExpedienteMedico, idPaciente: string){
     await updateDoc(doc(this.firestore, "pacientes", idPaciente), {
-      id: idPaciente,
-      nombre: paciente.nombre,
-      apellidos: paciente.apellidos,
-      correo: paciente.correo,
-      telefono: paciente.telefono,
-      foto: ''
+      expedienteMedico: {
+        alimentacion: expedienteMedico.alimentacion,
+        pasatiempos: expedienteMedico.pasatiempos,
+        religion: expedienteMedico.religion,
+        ejercicio: expedienteMedico.ejercicio,
+        alcohol: expedienteMedico.alcohol,
+        drogas: expedienteMedico.drogas,
+        fuma: expedienteMedico.fuma,
+        sarampion: expedienteMedico.sarampion,
+        rubeola: expedienteMedico.rubeola,
+        varicela: expedienteMedico.varicela,
+        escarlatina: expedienteMedico.escarlatina,
+        polomelitis: expedienteMedico.polomelitis,
+        hepatitis: expedienteMedico.hepatitis,
+        transfuciones: expedienteMedico.transfuciones,
+        cancer: expedienteMedico.cancer,
+        asma: expedienteMedico.asma,
+        diabetes: expedienteMedico.diabetes,
+        hipertension: expedienteMedico.hipertension,
+        obesidad: expedienteMedico.obesidad,
+        alergias: expedienteMedico.alergias,
+        cirugias: expedienteMedico.cirugias,
+        peso: expedienteMedico.peso,
+        talla: expedienteMedico.talla,
+        ta: expedienteMedico.ta,
+        fc: expedienteMedico.fc,
+        fr: expedienteMedico.fr,
+        datosSubjetivos: expedienteMedico.datosSubjetivos,
+        datosObjetivos: expedienteMedico.datosObjetivos,
+        estudiosDiagnosticos: expedienteMedico.estudiosDiagnosticos,
+        impresionDiagnosticos: expedienteMedico.impresionDiagnosticos,
+        diagnostico: expedienteMedico.diagnostico,
+        pronostico: expedienteMedico.pronostico,
+        tratamiento: expedienteMedico.tratamiento,
+        evolucion: expedienteMedico.evolucion,
+      }
     }).then(() => {
       Swal.fire({
         icon: 'success',
-        title: 'Datos Modificados',
+        title: 'Expediente Guardado Correctamente',
         text: 'Información actualizada',
         timer: 3000,
         timerProgressBar: true,
