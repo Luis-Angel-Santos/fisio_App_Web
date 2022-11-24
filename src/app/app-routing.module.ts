@@ -7,6 +7,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ConsultaPacienteComponent } from './pages/pacientes/consulta-paciente/consulta-paciente.component';
 import { EditarPacienteComponent } from './pages/pacientes/editar-paciente/editar-paciente.component';
+import { HistorialClinicoComponent } from './pages/pacientes/historial-clinico/historial-clinico.component';
+import { InformacionMedicoComponent } from './pages/informacion-medico/informacion-medico.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,14 @@ const routes: Routes = [
   {
     path: 'editarPaciente/:id',
     component: EditarPacienteComponent
+  },
+  {
+    path: 'verHistorial/:id',
+    component: HistorialClinicoComponent
+  },
+  {
+    path: 'modificarMiInformacion',
+    component: InformacionMedicoComponent
   },
 ];
 

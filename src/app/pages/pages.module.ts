@@ -19,6 +19,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { HistorialClinicoComponent } from './pacientes/historial-clinico/historial-clinico.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { InformacionMedicoComponent } from './informacion-medico/informacion-medico.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { HistorialClinicoComponent } from './pacientes/historial-clinico/histori
     RegistrarPacienteComponent,
     ConsultaPacienteComponent,
     EditarPacienteComponent,
-    HistorialClinicoComponent
+    HistorialClinicoComponent,
+    InformacionMedicoComponent
   ],
   imports: [
     CommonModule,
@@ -44,6 +47,7 @@ import { HistorialClinicoComponent } from './pacientes/historial-clinico/histori
     MatChipsModule,
     MatRadioModule,
     MatProgressBarModule,
+    MatTooltipModule
   ],
   exports: [
     LoginComponent,

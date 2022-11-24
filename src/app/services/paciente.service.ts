@@ -141,9 +141,9 @@ export class PacienteService {
     })
   }
 
-  async crearHistorialMedico(expedienteMedico: ExpedienteMedico, idPaciente: string){
-    await updateDoc(doc(this.firestore, "pacientes", idPaciente), {
-      expedienteMedico: {
+  async crearHistoriaClinica(expedienteMedico: ExpedienteMedico, idExpediente: string){
+    var fecha = Date.now()
+    await setDoc(doc(this.firestore, `expedientesMedicos/${idExpediente}`), {
         alimentacion: expedienteMedico.alimentacion,
         pasatiempos: expedienteMedico.pasatiempos,
         religion: expedienteMedico.religion,
@@ -178,7 +178,6 @@ export class PacienteService {
         pronostico: expedienteMedico.pronostico,
         tratamiento: expedienteMedico.tratamiento,
         evolucion: expedienteMedico.evolucion,
-      }
     }).then(() => {
       Swal.fire({
         icon: 'success',
@@ -190,6 +189,6 @@ export class PacienteService {
       }).then(() => this.router.navigateByUrl('home'))
     })
   }
-
+  
   constructor(private router: Router, private db: Firestore) { }
 }

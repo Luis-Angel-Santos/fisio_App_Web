@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Medico } from '../interfaces/medico';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCredential } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCredential, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
@@ -18,6 +18,7 @@ export class AuthService {
   firestore = getFirestore(this.app);
   email: string = '';
   password: string = '';
+  sesionActiva!: any;
 
   crearMedico(medico: Medico){
     this.email = medico.correo;
@@ -52,6 +53,8 @@ export class AuthService {
     this.password = medico.contrasena;
     signInWithEmailAndPassword(this.auth, this.email, this.password)
       .then((userCredential) => {
+        this.sesionActiva = userCredential.user.email;
+        window.localStorage.setItem('usuarioActual', userCredential.user.uid)
         Swal.fire({
           icon: 'success',
           title: 'Entrando...',
@@ -82,6 +85,8 @@ export class AuthService {
       titulo: '',
     });
   }
+
+  
     
 
   constructor(private router: Router) { }
