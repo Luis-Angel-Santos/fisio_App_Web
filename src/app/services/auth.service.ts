@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Medico } from '../interfaces/medico';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCredential, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getDoc, getFirestore, updateDoc } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
@@ -81,9 +81,49 @@ export class AuthService {
       nombre: datosMedico.nombre,
       apellidos: datosMedico.apellidos,
       correo: user.user.email,
+      contrasena: datosMedico.contrasena,
       edad: 0,
       titulo: '',
     });
+  }
+
+  async obtenerMedicoActivo(id: string){
+    var paciente = await getDoc(doc(this.firestore, 'medicos', id))
+      .then((doc) => {
+        if(doc.exists()){
+          const datosMedico: Medico = {
+            nombre: doc.data()['nombre'],
+            apellidos: doc.data()['apellidos'],
+            correo: doc.data()['correo'],
+            contrasena: doc.data()['contrasena'],
+            edad: doc.data()['edad'],
+            titulo: doc.data()['titulo'],
+          }
+          return datosMedico;
+        }else{
+          console.log("No such document!");
+          return;
+        }
+    });
+    return paciente;
+  }
+
+  async editarMedico(medico: Medico, idMedico: string){
+    await updateDoc(doc(this.firestore, "medicos", idMedico), {
+      nombre: medico.nombre,
+      apellidos: medico.apellidos,
+      edad: medico.edad,
+      titulo: medico.titulo
+    }).then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Datos Modificados',
+        text: 'Información actualizada',
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false
+      }).then(() => this.router.navigateByUrl('home'))
+    })
   }
 
   

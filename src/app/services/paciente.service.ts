@@ -142,8 +142,10 @@ export class PacienteService {
   }
 
   async crearHistoriaClinica(expedienteMedico: ExpedienteMedico, idExpediente: string){
-    var fecha = Date.now()
-    await setDoc(doc(this.firestore, `expedientesMedicos/${idExpediente}`), {
+    var tiempoHoy = Date.now();
+    var fechaSinFormato = new Date(tiempoHoy);
+    var fecha = fechaSinFormato.toDateString();
+    await setDoc(doc(this.firestore, `expedientesMedicos/${idExpediente}/historiasClinicas/${fecha}`), {
         alimentacion: expedienteMedico.alimentacion,
         pasatiempos: expedienteMedico.pasatiempos,
         religion: expedienteMedico.religion,

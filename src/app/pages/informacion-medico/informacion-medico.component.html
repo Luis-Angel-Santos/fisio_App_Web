@@ -1,1 +1,27 @@
-<p>informacion-medico works!</p>
+<br><br><br><br>
+<div class="container text-center" *ngIf="datosMedico">
+    <mat-card class="example-card">
+        <mat-card-title>Editar mi información</mat-card-title>
+        <hr>
+        <form (ngSubmit)="enviar()" class="row" [formGroup]="medico" >
+            <mat-form-field class="example-full-width col" appearance="fill">
+                <mat-label>{{datosMedico.nombre}}</mat-label>
+                <input matInput placeholder="Tú nombre" formControlName="nombre">
+            </mat-form-field>
+            <mat-form-field class="example-full-width col" appearance="fill">
+                <mat-label>{{datosMedico.apellidos}}</mat-label>
+                <input matInput placeholder="Apellidos" formControlName="apellidos">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>{{datosMedico.edad}}</mat-label>
+                <input type="number" matInput placeholder="Edad" formControlName="edad">
+            </mat-form-field>
+            <mat-form-field class="example-full-width col" appearance="fill">
+                <mat-label>{{datosMedico.titulo}}</mat-label>
+                <input type="tel" matInput placeholder="Ejemplo: Fisioterapeuta" formControlName="titulo">
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="primary" [disabled]="medico.invalid">Listo</button>
+        </form>
+        <hr>
+    </mat-card>
+</div>
