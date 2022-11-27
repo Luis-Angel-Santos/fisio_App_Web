@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PacienteService } from 'src/app/services/paciente.service';
 import Swal from 'sweetalert2';
-import { ExpedienteMedico, Paciente } from '../../../interfaces/paciente';
+import { ExpedienteMedico, Paciente, Receta } from '../../../interfaces/paciente';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -14,7 +14,10 @@ export class ConsultaPacienteComponent implements OnInit {
 
   pacienteId!: string;
   pacienteSeleccionado!: Paciente;
+  fecha!: Date;
+  fechaActual!: string;
   public expedienteMedico!: FormGroup;
+  public recetaAsignada!: FormGroup;
 
   private buildForm() {
     this.expedienteMedico = this.formBuilder.group({
@@ -52,6 +55,13 @@ export class ConsultaPacienteComponent implements OnInit {
       pronostico:  ['', [Validators.required]],
       tratamiento: ['', [Validators.required]],
       evolucion:   ['', [Validators.required]],
+    });
+    this.recetaAsignada = this.formBuilder.group({
+      fecha: [''],
+      nombreMedico: ['', Validators.required],
+      nombrePaciente: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      tratamiento: ['', Validators.required],
     });
   }
 
@@ -96,11 +106,24 @@ export class ConsultaPacienteComponent implements OnInit {
     this.pacienteService.crearHistoriaClinica(expediente, this.pacienteSeleccionado.idExpedienteMedico!); 
   }
 
+  asignarReceta(){
+    var receta: Receta = {
+      fecha: this.fechaActual,
+      nombreMedico: this.recetaAsignada.value['nombreMedico'],
+      nombrePaciente: this.pacienteSeleccionado.nombre,
+      tratamiento: this.recetaAsignada.value['tratamiento'],
+      descripcion: this.recetaAsignada.value['descripcion']
+    };
+    this.pacienteService.asignarNuevaReceta(receta, this.pacienteSeleccionado.idExpedienteMedico!);
+  }
+
   constructor(private rutaActiva: ActivatedRoute,
               private pacienteService: PacienteService,
               private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.fecha = new Date();
+    this.fechaActual = this.fecha.toDateString();
     this.buildForm();
     this.pacienteId = this.rutaActiva.snapshot.paramMap.get('id')!;
     this.pacienteService.mostrarUnPaciente(this.pacienteId)

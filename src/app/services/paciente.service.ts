@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { getAuth, createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { collection, getDocs, getFirestore, deleteDoc, doc, getDoc, setDoc, updateDoc, query, onSnapshot } from "firebase/firestore";
-import { Paciente, ExpedienteMedico } from '../interfaces/paciente';
+import { Paciente, ExpedienteMedico, Receta } from '../interfaces/paciente';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -191,6 +191,16 @@ export class PacienteService {
       }).then(() => this.router.navigateByUrl('home'))
     })
   }
-  
+
+  async asignarNuevaReceta(receta: Receta, idExpediente: string){
+    await setDoc(doc(this.firestore, `expedientesMedicos/${idExpediente}/recetasAsginadas/${receta.fecha}`), {
+      fecha: receta.fecha,
+      descripcion: receta.descripcion,
+      tratamiento: receta.tratamiento,
+      nombreMedico: receta.nombreMedico,
+      nombrePaciente: receta.nombrePaciente 
+    })
+  }
+
   constructor(private router: Router, private db: Firestore) { }
 }

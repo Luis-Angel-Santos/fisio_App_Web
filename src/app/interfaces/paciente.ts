@@ -46,3 +46,11 @@ export interface ExpedienteMedico{
     tratamiento: string;
     evolucion: string;
 }
+
+export interface Receta{
+    fecha: string;
+    nombreMedico: string;
+    nombrePaciente: string;
+    tratamiento: string;
+    descripcion: string;
+}

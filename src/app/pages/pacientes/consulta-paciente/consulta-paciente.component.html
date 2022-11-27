@@ -221,7 +221,7 @@
                 </mat-card>
             </div>
         </mat-tab>
-        <mat-tab label="Notas de evolución">
+        <mat-tab label="Notas de evolución*">
             <div class="container-datos">
                 <mat-card class="example-card">
                     <p>Por favor rellene todos los campos</p>
@@ -233,6 +233,35 @@
                         
                         <br><br><hr>
                         <button type="submit" mat-raised-button color="primary"  [disabled]="expedienteMedico.invalid">Guardar</button>
+                    </form>
+                    <hr>
+                </mat-card>
+            </div>
+        </mat-tab>
+        <mat-tab label="Recetas*">
+            <div class="container-datos">
+                <mat-card class="example-card">
+                    <h2 class="text-center">Asignar una receta nueva al paciente</h2>
+                    <p>Fecha: {{fechaActual}}</p>
+                    <form (ngSubmit)="asignarReceta()" class="row" [formGroup]="recetaAsignada" novalidate>                        
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Descripción</mat-label>
+                            <textarea formControlName="descripcion" matInput placeholder="..."></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>tratamiento</mat-label>
+                            <textarea formControlName="tratamiento" matInput placeholder="..."></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Paciente</mat-label>
+                            <textarea formControlName="nombrePaciente" matInput placeholder="{{pacienteSeleccionado.nombre}}"></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>nombreD</mat-label>
+                            <textarea formControlName="nombreMedico" matInput placeholder="..."></textarea>
+                        </mat-form-field>
+                        <br><br><hr>
+                        <button type="submit" mat-raised-button color="primary"  [disabled]="recetaAsignada.invalid">Guardar</button>
                     </form>
                     <hr>
                 </mat-card>
