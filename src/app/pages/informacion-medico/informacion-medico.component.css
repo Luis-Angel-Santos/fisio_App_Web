@@ -10,3 +10,7 @@
     margin-top: 50px;
     border-radius: 20px;
   }
+
+  img{
+    max-width: 100px;
+  }

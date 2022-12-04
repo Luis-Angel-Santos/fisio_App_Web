@@ -9,6 +9,10 @@ import { AuthService } from '../../services/auth.service';
 })
 export class MenuComponent implements OnInit {
 
+  cerrarSesion(){
+    this.authService.cerrarSesion();
+  }
+
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {}

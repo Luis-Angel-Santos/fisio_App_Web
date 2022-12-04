@@ -21,6 +21,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { HistorialClinicoComponent } from './pacientes/historial-clinico/historial-clinico.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { InformacionMedicoComponent } from './informacion-medico/informacion-medico.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { InformacionMedicoComponent } from './informacion-medico/informacion-med
     MatChipsModule,
     MatRadioModule,
     MatProgressBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    NgxPaginationModule
   ],
   exports: [
     LoginComponent,

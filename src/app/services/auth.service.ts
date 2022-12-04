@@ -134,6 +134,24 @@ export class AuthService {
       return observableOf(false);
     }
   }
+
+  cerrarSesion(){
+    Swal.fire({
+      icon: 'warning',
+      title: '¿Cerrar Sesión?',
+      text: '¿Esta seguro de esta acción?',
+      showCancelButton: true,
+      showConfirmButton: true,
+      confirmButtonColor: 'green',
+      cancelButtonColor: 'red'
+    }).then((resp) => {
+      if(resp.isConfirmed){
+        this.auth.signOut();
+        localStorage.removeItem('usuarioActual');
+        this.router.navigate(['login']);
+      }
+    });
+  }
     
 
   constructor(private router: Router) {

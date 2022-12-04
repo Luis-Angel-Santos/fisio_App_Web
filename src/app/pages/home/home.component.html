@@ -20,39 +20,42 @@
             <div class="spinner-grow text-secondary" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
-          <div class="spinner-grow text-success" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-            <div class="spinner-grow text-danger" role="status">
+            <div class="spinner-grow text-success" role="status">
                 <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-danger" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow text-warning" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
-            <div class="spinner-grow text-warning" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-            <mat-card class="col" *ngFor="let paciente of pacientes">
+            <mat-card class="col animate__animated animate__fadeIn" *ngFor="let paciente of pacientes | paginate: { itemsPerPage: 10, currentPage: p }" >
                 <img *ngIf="!paciente.foto" src="../../../assets/user.png" class="img-fluid" alt="paciente">
                 <img *ngIf="paciente.foto" src="{{paciente['foto']}}" class="img-fluid" alt="nuevoPaciente">
-            <br>
-            <br>
-            <mat-card-title>{{paciente.nombre}}</mat-card-title>
-            <mat-card-subtitle>{{paciente.nombre}} {{paciente.apellidos}}</mat-card-subtitle>
-            <button mat-button matTooltip="Ver historial clinico" [routerLink]="['/verHistorial' , paciente['id']]">
-                <mat-icon aria-hidden="false" aria-label="Expediente" fontIcon="medical_information"></mat-icon>
-            </button>
-            <button mat-button matTooltip="Editar información del paciente" color="primary" [routerLink]="['/editarPaciente' , paciente['id']]">
-                <mat-icon aria-hidden="false" aria-label="Editar" fontIcon="edit"></mat-icon>
-            </button>
-            <button mat-button matTooltip="Borrar a un paciente" color="warn">
-                <mat-icon aria-hidden="false" aria-label="Eliminar" fontIcon="delete" (click)="eliminarPaciente(paciente['id'])"></mat-icon>
-            </button>
-            <mat-card-actions>
-                <button mat-button color="primary" matTooltip="Realizar consulta" [routerLink]="['/consultarPaciente' , paciente['id']]">
-                    Consultar paciente
-                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="start"></mat-icon>
+                <br>
+                <br>
+                <mat-card-title>{{paciente.nombre}}</mat-card-title>
+                <mat-card-subtitle>{{paciente.nombre}} {{paciente.apellidos}}</mat-card-subtitle>
+                <button mat-button matTooltip="Ver historial clinico" [routerLink]="['/verHistorial' , paciente['id']]">
+                    <mat-icon aria-hidden="false" aria-label="Expediente" fontIcon="medical_information"></mat-icon>
                 </button>
-            </mat-card-actions>
-        </mat-card>
-
+                <button mat-button matTooltip="Editar información del paciente" color="primary" [routerLink]="['/editarPaciente' , paciente['id']]">
+                    <mat-icon aria-hidden="false" aria-label="Editar" fontIcon="edit"></mat-icon>
+                </button>
+                <button mat-button matTooltip="Borrar a un paciente" color="warn">
+                    <mat-icon aria-hidden="false" aria-label="Eliminar" fontIcon="delete" (click)="eliminarPaciente(paciente['id'])"></mat-icon>
+                </button>
+                <mat-card-actions>
+                    <button mat-button color="primary" matTooltip="Realizar consulta" [routerLink]="['/consultarPaciente' , paciente['id']]">
+                        Consultar paciente
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="start"></mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+            <br>
+            <hr>
+            <pagination-controls (pageChange)="pageChangeEvent($event)" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+            <hr>
     </div>
 </div>

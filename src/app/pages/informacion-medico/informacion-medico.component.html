@@ -1,6 +1,8 @@
-<br><br><br><br>
+<br><
 <div class="container text-center" *ngIf="datosMedico">
     <mat-card class="example-card">
+        <img src="../../../assets/user.png" class="img-fluid" alt="nuevoPaciente">
+        <br><br>
         <mat-card-title>Editar mi información</mat-card-title>
         <hr>
         <form (ngSubmit)="enviar()" class="row" [formGroup]="medico" >

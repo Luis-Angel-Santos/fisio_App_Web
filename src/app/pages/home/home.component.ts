@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PacienteService } from '../../services/paciente.service';
 import { Paciente } from '../../interfaces/paciente';
-import { Firestore } from 'firebase/firestore';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -12,9 +11,14 @@ import { AuthService } from '../../services/auth.service';
 export class HomeComponent implements OnInit {
 
   pacientes!: Paciente[];
+  p: number = 1;
 
   eliminarPaciente(idPaciente: any){
     this.pacientesService.eliminarPaciente(idPaciente);
+  }
+
+  pageChangeEvent(event: number){
+    this.p = event;
   }
 
   constructor(private pacientesService: PacienteService,

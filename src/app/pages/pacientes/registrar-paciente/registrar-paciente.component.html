@@ -31,7 +31,7 @@
                 <mat-label class="example-full-width col">Foto del paciente (opcional)</mat-label>
                 <input class="form-control" type="file" (change)="onFileSelect($event)">
                 <mat-progress-bar *ngIf="subirFoto" [value]="progreso" mode="determinate"></mat-progress-bar>
-                <p *ngIf="subirFoto">Subida: {{progreso}}%</p>
+                <p *ngIf="subirFoto">Subida: {{progreso | number}}%</p>
             </div>
             <p *ngIf="user.get('nombre')?.errors && user.get('nombre')?.touched" class="alert alert-danger">
                 Este campo es obligatorio
