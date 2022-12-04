@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { getAuth, createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, UserCredential } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { collection, getDocs, getFirestore, deleteDoc, doc, getDoc, setDoc, updateDoc, query, onSnapshot } from "firebase/firestore";
+import { collection, getFirestore, deleteDoc, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { Paciente, ExpedienteMedico, Receta } from '../interfaces/paciente';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -199,6 +199,15 @@ export class PacienteService {
       tratamiento: receta.tratamiento,
       nombreMedico: receta.nombreMedico,
       nombrePaciente: receta.nombrePaciente 
+    }).then(() => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Receta asignada',
+        text: 'Receta aginada correctamente',
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false
+      }).then(() => this.router.navigateByUrl('home'))
     })
   }
 

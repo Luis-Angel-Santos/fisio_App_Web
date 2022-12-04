@@ -4,16 +4,17 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistrarPacienteComponent } from './pages/pacientes/registrar-paciente/registrar-paciente.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { FooterComponent } from './shared/footer/footer.component';
 import { ConsultaPacienteComponent } from './pages/pacientes/consulta-paciente/consulta-paciente.component';
 import { EditarPacienteComponent } from './pages/pacientes/editar-paciente/editar-paciente.component';
 import { HistorialClinicoComponent } from './pages/pacientes/historial-clinico/historial-clinico.component';
 import { InformacionMedicoComponent } from './pages/informacion-medico/informacion-medico.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full',
   },
   {
@@ -26,27 +27,33 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'registrarPaciente',
-    component: RegistrarPacienteComponent
+    component: RegistrarPacienteComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'consultarPaciente/:id',
-    component: ConsultaPacienteComponent
+    component: ConsultaPacienteComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'editarPaciente/:id',
-    component: EditarPacienteComponent
+    component: EditarPacienteComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'verHistorial/:id',
-    component: HistorialClinicoComponent
+    component: HistorialClinicoComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'modificarMiInformacion',
-    component: InformacionMedicoComponent
+    component: InformacionMedicoComponent,
+    canActivate: [AuthGuard],
   },
 ];
 

@@ -40,7 +40,7 @@ export class InformacionMedicoComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.idMedico = window.localStorage.getItem('usuarioActual')!;
+    this.idMedico = localStorage.getItem('usuarioActual')!;
     this.authMedico.obtenerMedicoActivo(this.idMedico)
       .then((medico) => {
         this.datosMedico = medico!;

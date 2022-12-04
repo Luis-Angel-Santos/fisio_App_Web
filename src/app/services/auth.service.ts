@@ -7,6 +7,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
+import { Observable, of as observableOf } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AuthService {
   firestore = getFirestore(this.app);
   email: string = '';
   password: string = '';
-  sesionActiva!: any;
+  sesionActiva!: boolean;
 
   crearMedico(medico: Medico){
     this.email = medico.correo;
@@ -53,7 +54,7 @@ export class AuthService {
     this.password = medico.contrasena;
     signInWithEmailAndPassword(this.auth, this.email, this.password)
       .then((userCredential) => {
-        this.sesionActiva = userCredential.user.email;
+        this.sesionActiva = true;
         window.localStorage.setItem('usuarioActual', userCredential.user.uid)
         Swal.fire({
           icon: 'success',
@@ -126,8 +127,15 @@ export class AuthService {
     })
   }
 
-  
+  sesionActive():Observable<boolean>{
+    if(localStorage.getItem('usuarioActual')){
+      return observableOf(true);
+    }else{
+      return observableOf(false);
+    }
+  }
     
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 }

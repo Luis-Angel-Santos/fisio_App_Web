@@ -4,6 +4,8 @@ import { PacienteService } from 'src/app/services/paciente.service';
 import Swal from 'sweetalert2';
 import { ExpedienteMedico, Paciente, Receta } from '../../../interfaces/paciente';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Medico } from 'src/app/interfaces/medico';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-consulta-paciente',
@@ -14,6 +16,8 @@ export class ConsultaPacienteComponent implements OnInit {
 
   pacienteId!: string;
   pacienteSeleccionado!: Paciente;
+  medicoSeleccionado!: Medico;
+  medicoActivo!: string;
   fecha!: Date;
   fechaActual!: string;
   public expedienteMedico!: FormGroup;
@@ -58,8 +62,8 @@ export class ConsultaPacienteComponent implements OnInit {
     });
     this.recetaAsignada = this.formBuilder.group({
       fecha: [''],
-      nombreMedico: ['', Validators.required],
-      nombrePaciente: ['', Validators.required],
+      nombreMedico: [''],
+      nombrePaciente: [''],
       descripcion: ['', Validators.required],
       tratamiento: ['', Validators.required],
     });
@@ -109,7 +113,7 @@ export class ConsultaPacienteComponent implements OnInit {
   asignarReceta(){
     var receta: Receta = {
       fecha: this.fechaActual,
-      nombreMedico: this.recetaAsignada.value['nombreMedico'],
+      nombreMedico: this.medicoSeleccionado.nombre!,
       nombrePaciente: this.pacienteSeleccionado.nombre,
       tratamiento: this.recetaAsignada.value['tratamiento'],
       descripcion: this.recetaAsignada.value['descripcion']
@@ -119,6 +123,7 @@ export class ConsultaPacienteComponent implements OnInit {
 
   constructor(private rutaActiva: ActivatedRoute,
               private pacienteService: PacienteService,
+              private authService: AuthService,
               private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -130,7 +135,11 @@ export class ConsultaPacienteComponent implements OnInit {
       .then((paciente) => {
         this.pacienteSeleccionado = paciente!;
       });
-
+    this.medicoActivo = localStorage.getItem('usuarioActual')!;
+    this.authService.obtenerMedicoActivo(this.medicoActivo)
+      .then((medico) => {
+        this.medicoSeleccionado = medico!;
+      });
   }
 
 }

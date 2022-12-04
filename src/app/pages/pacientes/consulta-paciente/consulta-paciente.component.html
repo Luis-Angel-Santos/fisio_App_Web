@@ -249,16 +249,8 @@
                             <textarea formControlName="descripcion" matInput placeholder="..."></textarea>
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
-                            <mat-label>tratamiento</mat-label>
+                            <mat-label>Tratamiento</mat-label>
                             <textarea formControlName="tratamiento" matInput placeholder="..."></textarea>
-                        </mat-form-field>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Paciente</mat-label>
-                            <textarea formControlName="nombrePaciente" matInput placeholder="{{pacienteSeleccionado.nombre}}"></textarea>
-                        </mat-form-field>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>nombreD</mat-label>
-                            <textarea formControlName="nombreMedico" matInput placeholder="..."></textarea>
                         </mat-form-field>
                         <br><br><hr>
                         <button type="submit" mat-raised-button color="primary"  [disabled]="recetaAsignada.invalid">Guardar</button>
