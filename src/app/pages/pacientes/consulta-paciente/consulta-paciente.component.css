@@ -1,24 +1,39 @@
-.container-datos{
+.container__paciente {
+    display: flex;
+    justify-content: center;
+}
+
+.container__paciente .container__pic {
+    width: 20%;
+    padding: 15px;
+}
+
+.container__paciente .container__info {
+    width: 80%;
+}
+
+.container-datos {
     max-width: 800px;
     margin: auto;
     display: flex;
-  }
-  
-.example-card{
-  border-radius: 20px;
-  width: 90%;
-  margin-top: 50px;
-  margin: 20px;
 }
 
-.option{
-  margin: 10px;
+.example-card {
+    border-radius: 20px;
+    width: 90%;
+    margin-top: 50px;
+    margin: 20px;
 }
 
-.option-button{
-  margin-left: 10px;
+.option {
+    margin: 10px;
 }
 
-.fotoPerfil{
-  max-width: 100px;
+.option-button {
+    margin-left: 10px;
+}
+
+.fotoPerfil {
+    width: 100%;
+    border-radius: 5%;
 }

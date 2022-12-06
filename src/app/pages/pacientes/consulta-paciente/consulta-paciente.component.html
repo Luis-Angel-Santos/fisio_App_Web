@@ -1,12 +1,16 @@
-<div class="container" *ngIf="pacienteSeleccionado">
-    <br>
-    <h2>Nombre: {{pacienteSeleccionado.nombre}}</h2>
-    <h3><b>Apellidos:</b> {{pacienteSeleccionado.apellidos}}</h3>
-    <hr>
-    <p><b>Correo:</b> {{pacienteSeleccionado.correo}}</p>
-    <p><b>Expediente: {{pacienteSeleccionado.idExpedienteMedico}}</b></p>
-    <p><b>Telefono:</b> {{pacienteSeleccionado.telefono}}</p>
-    <img src="{{pacienteSeleccionado.foto}}" class="fotoPerfil" alt="paciente">
+<div class="container container__paciente" *ngIf="pacienteSeleccionado">
+    <div class="container__pic animate__animated animate__fadeIn">
+        <img *ngIf="!pacienteSeleccionado.foto" src="../../../../assets/user.png" class="fotoPerfil animate__animated animate__fadeIn" alt="paciente">
+        <img *ngIf="pacienteSeleccionado.foto" src="{{pacienteSeleccionado.foto}}" class="fotoPerfil animate__animated animate__fadeIn" alt="paciente">
+    </div>
+    <div class="container__info animate__animated animate__fadeIn">
+        <br>
+        <h2>Nombre: {{pacienteSeleccionado.nombre}}</h2>
+        <h3><b>Apellidos:</b> {{pacienteSeleccionado.apellidos}}</h3>
+        <p><b>Correo:</b> {{pacienteSeleccionado.correo}}</p>
+        <p><b>Expediente: {{pacienteSeleccionado.idExpedienteMedico}}</b></p>
+        <p><b>Telefono:</b> {{pacienteSeleccionado.telefono}}</p>
+    </div>
 </div>
 <div class="container">
     <mat-tab-group mat-align-tabs="start">
@@ -21,7 +25,7 @@
                         </mat-form-field>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Pasatiempos</mat-label>
-                            <input type="text" formControlName="pasatiempos"matInput placeholder="Pasatiempos del paciente" formControlName="pasatiempos">
+                            <input type="text" formControlName="pasatiempos" matInput placeholder="Pasatiempos del paciente" formControlName="pasatiempos">
                         </mat-form-field>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Religión</mat-label>
@@ -225,14 +229,15 @@
             <div class="container-datos">
                 <mat-card class="example-card">
                     <p>Por favor rellene todos los campos</p>
-                    <form (ngSubmit)="enviarDatos()" class="row" [formGroup]="expedienteMedico" novalidate>                        
+                    <form (ngSubmit)="enviarDatos()" class="row" [formGroup]="expedienteMedico" novalidate>
                         <mat-form-field class="example-full-width">
                             <mat-label>Descripción</mat-label>
                             <textarea formControlName="evolucion" matInput placeholder="..."></textarea>
                         </mat-form-field>
-                        
-                        <br><br><hr>
-                        <button type="submit" mat-raised-button color="primary"  [disabled]="expedienteMedico.invalid">Guardar</button>
+
+                        <br><br>
+                        <hr>
+                        <button type="submit" mat-raised-button color="primary" [disabled]="expedienteMedico.invalid">Guardar</button>
                     </form>
                     <hr>
                 </mat-card>
@@ -243,7 +248,7 @@
                 <mat-card class="example-card">
                     <h2 class="text-center">Asignar una receta nueva al paciente</h2>
                     <p>Fecha: {{fechaActual}}</p>
-                    <form (ngSubmit)="asignarReceta()" class="row" [formGroup]="recetaAsignada" novalidate>                        
+                    <form (ngSubmit)="asignarReceta()" class="row" [formGroup]="recetaAsignada" novalidate>
                         <mat-form-field class="example-full-width">
                             <mat-label>Descripción</mat-label>
                             <textarea formControlName="descripcion" matInput placeholder="..."></textarea>
@@ -252,8 +257,9 @@
                             <mat-label>Tratamiento</mat-label>
                             <textarea formControlName="tratamiento" matInput placeholder="..."></textarea>
                         </mat-form-field>
-                        <br><br><hr>
-                        <button type="submit" mat-raised-button color="primary"  [disabled]="recetaAsignada.invalid">Guardar</button>
+                        <br><br>
+                        <hr>
+                        <button type="submit" mat-raised-button color="primary" [disabled]="recetaAsignada.invalid">Guardar</button>
                     </form>
                     <hr>
                 </mat-card>
