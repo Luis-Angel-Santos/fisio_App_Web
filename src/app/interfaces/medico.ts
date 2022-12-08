@@ -6,4 +6,5 @@ export interface Medico {
     contrasena: string,
     edad?: number,
     titulo?: string,
+    foto?: string
 }

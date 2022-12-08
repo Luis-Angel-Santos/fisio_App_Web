@@ -1,8 +1,22 @@
-<div class="container">
+<div *ngIf="!pacienteSeleccionado" class="text-center">
     <br>
-    <h1>Editar datos del paciente</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="spinner-grow text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
 </div>
-<div class="container text-center" *ngIf="pacienteSeleccionado">
+<div class="container text-center animate__animated animate__fadeIn" *ngIf="pacienteSeleccionado">
     <mat-card class="example-card">
         <img *ngIf="pacienteSeleccionado.foto" src="{{pacienteSeleccionado.foto}}" alt="paciente" class="ronded mx-auto d-block">
         <img *ngIf="!pacienteSeleccionado.foto" src="../../../../assets/user.png" alt="paciente" class="ronded mx-auto d-block" width="100px">
@@ -26,6 +40,12 @@
                 <mat-label>{{pacienteSeleccionado.telefono}}</mat-label>
                 <input type="tel" matInput placeholder="Telefono" formControlName="telefono">
             </mat-form-field>
+            <div class="mb-3">
+                <mat-label class="example-full-width col">Foto(opcional)</mat-label>
+                <input class="form-control" type="file" (change)="onFileSelect($event)">
+                <mat-progress-bar *ngIf="subirFoto" [value]="progreso" mode="determinate"></mat-progress-bar>
+                <p *ngIf="subirFoto">Subida: {{progreso | number}}%</p>
+            </div>
             <button type="submit" mat-raised-button color="primary" [disabled]="user.invalid">Listo</button>
         </form>
         <hr>

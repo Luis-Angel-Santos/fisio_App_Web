@@ -1,4 +1,22 @@
-<div class="container container__paciente" *ngIf="paciente">
+<div *ngIf="!paciente" class="text-center">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="spinner-grow text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+<div class="container container__paciente animate__animated animate__fadeIn" *ngIf="paciente">
     <div class="container__pic animate__animated animate__fadeIn">
         <img *ngIf="!paciente.foto" src="../../../../assets/user.png" class="fotoPerfil animate__animated animate__fadeIn" alt="paciente">
         <img *ngIf="paciente.foto" src="{{paciente.foto}}" class="fotoPerfil animate__animated animate__fadeIn" alt="paciente">
@@ -8,7 +26,7 @@
         <h2>Nombre completo: {{paciente.nombre}} {{paciente.apellidos}}</h2>
     </div>
 </div>
-<div class="container">
+<div class="container animate__animated animate__fadeIn" *ngIf="paciente">
     <mat-tab-group animationDuration="2000ms">
         <mat-tab label="Historias Clinicas">
             <div class="container-datos">
@@ -36,7 +54,9 @@
                                 <div class="fw-bold">{{receta.fecha}}</div>
                                 {{receta.tratamiento}}
                             </div>
-                            <span class="badge bg-primary rounded-pill">.</span>
+                            <button type="button" class="btn btn-success btn-sm" (click)="generarPdfReceta(receta.fecha , receta.descripcion, receta.nombreMedico, receta.tratamiento)">
+                                Ver receta
+                            </button>
                         </li>
                     </ol>
                 </mat-card>

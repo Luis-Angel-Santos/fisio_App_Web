@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { PacienteService } from 'src/app/services/paciente.service';
 import { ExpedienteMedico, Receta, Paciente } from '../../../interfaces/paciente';
 import { jsPDF } from "jspdf";
+import { Medico } from 'src/app/interfaces/medico';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-historial-clinico',
@@ -44,8 +46,40 @@ export class HistorialClinicoComponent implements OnInit {
     doc.save(`HistoriaClinica_${this.paciente.nombre}_${fecha}`);
   }
 
+  generarPdfReceta(fecha: string, descripcion: string, medico:string, tratamiento: string){
+    var foto;
+    if(this.paciente.foto == ''){
+      foto = this.paciente.foto;
+    }else{
+      foto = '../../../../assets/user.png';
+    }
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'px',
+      format: 'letter',
+    });
+    doc.addImage('../../../../assets/logo.png', 'png', 20, 20, 50,50);
+    doc.text('FISIO', 30, 80);
+    doc.text(`Receta Medica de ${this.paciente.nombre} ${this.paciente.apellidos}`, 125, 80)
+    doc.text(`Fecha: ${fecha}`, 280, 40);
+    doc.text(`Receta asignada por ${medico}`, 30, 120)
+    doc.text(`-- El fisioterapeuta ${medico} en base a la consulta realizada`, 30, 150);
+    doc.text(`el dia ${fecha} con el paciente ${this.paciente.nombre} ${this.paciente.apellidos}`, 30, 165);
+    doc.text('receta lo siguiente a dicho paciente.', 30, 180);
+    doc.text(`--Descripción de la receta: ${descripcion}`, 30, 210);
+    doc.text(`--Tratamiento recomendado: ${tratamiento}`, 30, 225);
+    doc.text(`Información general del paciente`, 125, 255);
+    doc.text(`-Nombre Completo: ${this.paciente.nombre} ${this.paciente.apellidos}`, 30, 285);
+    doc.text(`-Número Telefonico: ${this.paciente.telefono}`, 30, 300);
+    doc.text(`-Expediente Medico: ${this.paciente.idExpedienteMedico}`, 30, 315);
+    doc.addImage('../../../../assets/user.png', 'png', 285, 285, 80,80)
+
+    doc.save(`RecetaMedica_${this.paciente.nombre}_${fecha}`);
+  }
+
   constructor(private rutaActiva: ActivatedRoute,
-              private pacienteService: PacienteService,) { }
+              private pacienteService: PacienteService,
+              private authMedico: AuthService) { }
 
   ngOnInit(): void {
     this.pacienteId = this.rutaActiva.snapshot.paramMap.get('id')!;

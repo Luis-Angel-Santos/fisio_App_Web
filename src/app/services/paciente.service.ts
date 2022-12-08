@@ -122,23 +122,43 @@ export class PacienteService {
   }
 
   async editarPaciente(paciente: Paciente, idPaciente: string){
-    await updateDoc(doc(this.firestore, "pacientes", idPaciente), {
-      id: idPaciente,
-      nombre: paciente.nombre,
-      apellidos: paciente.apellidos,
-      correo: paciente.correo,
-      telefono: paciente.telefono,
-      foto: ''
-    }).then(() => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Datos Modificados',
-        text: 'Información actualizada',
-        timer: 3000,
-        timerProgressBar: true,
-        showConfirmButton: false
-      }).then(() => this.router.navigateByUrl('home'))
-    })
+    if(paciente.foto == ''){
+      await updateDoc(doc(this.firestore, "pacientes", idPaciente), {
+        id: idPaciente,
+        nombre: paciente.nombre,
+        apellidos: paciente.apellidos,
+        correo: paciente.correo,
+        telefono: paciente.telefono,
+      }).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Datos Modificados',
+          text: 'Información actualizada',
+          timer: 3000,
+          timerProgressBar: true,
+          showConfirmButton: false
+        }).then(() => this.router.navigateByUrl('home'))
+      })
+    }else{
+      await updateDoc(doc(this.firestore, "pacientes", idPaciente), {
+        id: idPaciente,
+        nombre: paciente.nombre,
+        apellidos: paciente.apellidos,
+        correo: paciente.correo,
+        telefono: paciente.telefono,
+        foto: paciente.foto
+      }).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Datos Modificados',
+          text: 'Información actualizada',
+          timer: 3000,
+          timerProgressBar: true,
+          showConfirmButton: false
+        }).then(() => this.router.navigateByUrl('home'))
+      })
+    }
+    
   }
 
   async crearHistoriaClinica(expedienteMedico: ExpedienteMedico, idExpediente: string){
@@ -180,6 +200,7 @@ export class PacienteService {
         pronostico: expedienteMedico.pronostico,
         tratamiento: expedienteMedico.tratamiento,
         evolucion: expedienteMedico.evolucion,
+        fecha: fecha
     }).then(() => {
       Swal.fire({
         icon: 'success',

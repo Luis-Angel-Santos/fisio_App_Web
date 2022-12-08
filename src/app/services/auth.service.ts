@@ -99,6 +99,7 @@ export class AuthService {
             contrasena: doc.data()['contrasena'],
             edad: doc.data()['edad'],
             titulo: doc.data()['titulo'],
+            foto: doc.data()['foto']
           }
           return datosMedico;
         }else{
@@ -110,21 +111,41 @@ export class AuthService {
   }
 
   async editarMedico(medico: Medico, idMedico: string){
-    await updateDoc(doc(this.firestore, "medicos", idMedico), {
-      nombre: medico.nombre,
-      apellidos: medico.apellidos,
-      edad: medico.edad,
-      titulo: medico.titulo
-    }).then(() => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Datos Modificados',
-        text: 'Información actualizada',
-        timer: 3000,
-        timerProgressBar: true,
-        showConfirmButton: false
-      }).then(() => this.router.navigateByUrl('home'))
-    })
+    if(medico.foto == ''){
+      await updateDoc(doc(this.firestore, "medicos", idMedico), {
+        nombre: medico.nombre,
+        apellidos: medico.apellidos,
+        edad: medico.edad,
+        titulo: medico.titulo
+      }).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Datos Modificados',
+          text: 'Información actualizada',
+          timer: 3000,
+          timerProgressBar: true,
+          showConfirmButton: false
+        }).then(() => this.router.navigateByUrl('home'))
+      })
+    }else{
+      await updateDoc(doc(this.firestore, "medicos", idMedico), {
+        nombre: medico.nombre,
+        apellidos: medico.apellidos,
+        edad: medico.edad,
+        titulo: medico.titulo,
+        foto: medico.foto
+      }).then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Datos Modificados',
+          text: 'Información actualizada',
+          timer: 3000,
+          timerProgressBar: true,
+          showConfirmButton: false
+        }).then(() => this.router.navigateByUrl('home'))
+      })
+    }
+    
   }
 
   sesionActive():Observable<boolean>{
