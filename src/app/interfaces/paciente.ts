@@ -45,6 +45,7 @@ export interface ExpedienteMedico{
     pronostico: string;
     tratamiento: string;
     evolucion: string;
+    fecha: string;
 }
 
 export interface Receta{

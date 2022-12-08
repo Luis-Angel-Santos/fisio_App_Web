@@ -104,7 +104,8 @@ export class ConsultaPacienteComponent implements OnInit {
       diagnostico: this.expedienteMedico.value['diagnostico'],
       pronostico: this.expedienteMedico.value['pronostico'],
       tratamiento: this.expedienteMedico.value['tratamiento'],
-      evolucion:this.expedienteMedico.value['evolucion'],
+      evolucion: this.expedienteMedico.value['evolucion'],
+      fecha: this.fechaActual
     };
     console.log(expediente);
     this.pacienteService.crearHistoriaClinica(expediente, this.pacienteSeleccionado.idExpedienteMedico!); 

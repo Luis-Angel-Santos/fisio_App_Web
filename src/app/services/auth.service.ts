@@ -103,7 +103,7 @@ export class AuthService {
           return datosMedico;
         }else{
           console.log("No such document!");
-          return;
+          return ;
         }
     });
     return paciente;

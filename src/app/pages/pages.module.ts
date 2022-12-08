@@ -22,6 +22,8 @@ import { HistorialClinicoComponent } from './pacientes/historial-clinico/histori
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { InformacionMedicoComponent } from './informacion-medico/informacion-medico.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ConsultaPacienteComponent,
     EditarPacienteComponent,
     HistorialClinicoComponent,
-    InformacionMedicoComponent
+    InformacionMedicoComponent,
   ],
   imports: [
     CommonModule,
@@ -49,11 +51,19 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatRadioModule,
     MatProgressBarModule,
     MatTooltipModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatListModule,
+    MatDialogModule,
   ],
   exports: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    RegistrarPacienteComponent,
+    ConsultaPacienteComponent,
+    EditarPacienteComponent,
+    HistorialClinicoComponent,
+    InformacionMedicoComponent,
   ]
 })
 export class PagesModule { }

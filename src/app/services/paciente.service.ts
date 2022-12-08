@@ -211,5 +211,16 @@ export class PacienteService {
     })
   }
 
+  mostrarRecetasAsignadas(idExpediente: string): Observable<Receta[]>{
+    var idExpediente: string;
+    const placeRef = collection(this.firestore, `expedientesMedicos/${idExpediente}/recetasAsginadas`); 
+    return collectionData(placeRef, {idField: 'id'}) as Observable<Receta[]>
+  }
+
+  mostrarHistorialClinico(id: string): Observable<ExpedienteMedico[]>{
+    const placeRef = collection(this.firestore, `expedientesMedicos/${id}/historiasClinicas`); 
+    return collectionData(placeRef, {idField: 'id'}) as Observable<ExpedienteMedico[]>
+  }
+
   constructor(private router: Router, private db: Firestore) { }
 }

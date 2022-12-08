@@ -1,0 +1,30 @@
+.container-datos {
+    max-width: 800px;
+    margin: auto;
+}
+
+.example-card {
+    border-radius: 20px;
+    width: 90%;
+    margin-top: 50px;
+    margin: 20px;
+}
+
+.container__paciente {
+    display: flex;
+    justify-content: center;
+}
+
+.container__paciente .container__pic {
+    width: 20%;
+    padding: 15px;
+}
+
+.container__paciente .container__info {
+    width: 80%;
+}
+
+.fotoPerfil {
+    width: 100%;
+    border-radius: 5%;
+}

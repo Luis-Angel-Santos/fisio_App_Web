@@ -1,1 +1,46 @@
-<p>historial-clinico works!</p>
+<div class="container container__paciente" *ngIf="paciente">
+    <div class="container__pic animate__animated animate__fadeIn">
+        <img *ngIf="!paciente.foto" src="../../../../assets/user.png" class="fotoPerfil animate__animated animate__fadeIn" alt="paciente">
+        <img *ngIf="paciente.foto" src="{{paciente.foto}}" class="fotoPerfil animate__animated animate__fadeIn" alt="paciente">
+    </div>
+    <div class="container__info animate__animated animate__fadeIn">
+        <br>
+        <h2>Nombre completo: {{paciente.nombre}} {{paciente.apellidos}}</h2>
+    </div>
+</div>
+<div class="container">
+    <mat-tab-group animationDuration="2000ms">
+        <mat-tab label="Historias Clinicas">
+            <div class="container-datos">
+                <mat-card class="example-card">
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let historia of historiasClinicas">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">{{historia.fecha}}</div>
+                                {{historia.diagnostico}}
+                            </div>
+                            <button type="button" class="btn btn-success btn-sm" (click)="generarPdf(historia.fecha , historia.diagnostico , historia.tratamiento)">
+                                Ver historia clinica
+                            </button>
+                        </li>
+                    </ol>
+                </mat-card>
+            </div>
+        </mat-tab>
+        <mat-tab label="Recetas Asginadas">
+            <div class="container-datos">
+                <mat-card class="example-card">
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let receta of recetas">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">{{receta.fecha}}</div>
+                                {{receta.tratamiento}}
+                            </div>
+                            <span class="badge bg-primary rounded-pill">.</span>
+                        </li>
+                    </ol>
+                </mat-card>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

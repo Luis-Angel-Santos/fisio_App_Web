@@ -27,8 +27,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void { 
     this.pacientesService.mostrarPacientes()
       .subscribe(pacientes => {
-        this.pacientes = pacientes;
-      })
+        this.pacientes = pacientes!;
+    });
+    localStorage.removeItem('idExpediente');
   } 
 
 }
