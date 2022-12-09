@@ -1,27 +1,18 @@
-# Fisio
+# FISIO WEB
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+Proyecto dessarrollado como parte del proyecto final, de decimo cuatrimestre de ingenieria de en desarrollo y gestión de software en la Universidad Tecnologica de Tlaxcala, por el equipo de desarollo conformado por:
 
-## Development server
+- :computer: Emanuel Rangel Luna 
+- :computer: Jonathan Perez Ordoñez  
+- :computer: Sherlin Toriz Perez
+- :computer: Luis Angel Santos Islas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Desarrollo
 
-## Code scaffolding
+- Angular 15.0.2
+- Esta SPA tambien es una PWA
+- En conjunto con la aplicación movil [FISIO APP](https://github.com/Luis-Angel-Santos/fisio_App_Movil)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Demostración
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Puedes ver el funcionamiento del proyecto en [FISIO](https://fisio.netlify.app/)

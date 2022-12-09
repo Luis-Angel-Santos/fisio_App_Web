@@ -7,10 +7,10 @@
     <p>Campos Obligatorios *</p>
     <form (ngSubmit)="enviar()" class="row" [formGroup]="user" novalidate>
       <mat-form-field class="example-full-width col" appearance="fill">
-        <mat-label>Nombre</mat-label>
+        <mat-label>Nombre(s)</mat-label>
          <input 
             matInput 
-            placeholder="Ingresa tu nombre" 
+            placeholder="Ingresa tu(s) nombre(s)" 
             formControlName="nombre">
        </mat-form-field>
        <mat-form-field class="example-full-width col" appearance="fill">

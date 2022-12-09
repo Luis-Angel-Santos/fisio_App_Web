@@ -2,10 +2,10 @@
     <mat-card class="example-card">
         <img src="../../../assets/newPaciente_alt.png" alt="nuevoPaciente" class="ronded mx-auto d-block">
         <br>
-        <mat-card-title>Registra un paciente nuevo</mat-card-title>
+        <mat-card-title>Registrar un paciente nuevo</mat-card-title>
         <hr>
         <p>Campos Obligatorios *</p>
-        <p>El número de telefono sera la contraseña para que le paciente puedad acceder desde la app</p>
+        <p>El número de telefono sera la contraseña para que le paciente pueda acceder desde la aplicación móvil</p>
         <form (ngSubmit)="enviar()" class="row" [formGroup]="user" novalidate>
             <mat-form-field class="example-full-width col" appearance="fill">
                 <mat-label>Nombre</mat-label>
@@ -20,8 +20,8 @@
                 <input type="email" matInput placeholder="Ingresa tu correo" formControlName="correo">
             </mat-form-field>
             <mat-form-field class="example-full-width col" appearance="fill">
-                <mat-label>Telefono</mat-label>
-                <input type="tel" matInput placeholder="Ingresa el telefono" formControlName="telefono">
+                <mat-label>Teléfono</mat-label>
+                <input type="tel" matInput placeholder="Ingresa el teléfono" formControlName="telefono">
             </mat-form-field>
             <mat-form-field class="example-full-width col" appearance="fill">
                 <mat-label>Expediente</mat-label>
@@ -50,7 +50,7 @@
             <p *ngIf="user.get('idExpedienteMedico')?.errors && user.get('idExpedienteMedico')?.touched" class="alert alert-danger">
                 Este campo es obligatorio
             </p>
-            <button type="submit" mat-raised-button color="primary" [disabled]="user.invalid">Registra Paciente</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="user.invalid">Registrar Paciente</button>
         </form>
         <hr>
     </mat-card>

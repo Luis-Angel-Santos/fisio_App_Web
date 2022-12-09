@@ -4,7 +4,7 @@
         <img *ngIf="!datosMedico.foto" src="../../../assets/user.png" class="img-fluid animate__animated animate__fadeIn" alt="paciente">
         <img *ngIf="datosMedico.foto" src="{{datosMedico['foto']}}" class="img-fluid animate__animated animate__fadeIn" alt="nuevoPaciente">
         <br><br>
-        <mat-card-title>Editar mi información</mat-card-title>
+        <mat-card-title>Editar mí información</mat-card-title>
         <hr>
         <form (ngSubmit)="enviar()" class="row" [formGroup]="medico" >
             <mat-form-field class="example-full-width col" appearance="fill">
